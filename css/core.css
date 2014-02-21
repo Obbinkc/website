@@ -1,0 +1,20 @@
+/* 
+    Document   : core
+    Created on : 21-feb-2014, 1:43:10
+    Author     : yomac_000
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#leftside_menu a{
+    width: 70px;
+    background-color: black;
+}
+#leftside_menu .col-md-4 col-lg-offset-0 .nav .nav-pills nav-stacked li a{
+    width: 20px;
+  
+}
