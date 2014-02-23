@@ -24,6 +24,7 @@
     <script src="js/bootstrap.js"></script>
   </head>
 	<body>
+            <img id="fs_bg"src="image/fs bg.jpg">
              <div class="container">
             <!-- row 1: navigation -->
             <div class="row">
@@ -38,8 +39,8 @@
                     </div>
                     <div class="collapse navbar-collapse" id="collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Voltijd</a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="courses.php">Voltijd</a></li>
                             <li ><a href="#">Deeltijd</a></li>
                             <li><a href="#">Contact</a></li>  
                         </ul>

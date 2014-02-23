@@ -10,7 +10,7 @@ require ('includes/header.php');
 <?php if (logged_in() == true) { ?>
 
     <p class="lead">Vakken</p>
-    <form class="navbar-form navbar-left" role="search">
+    <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
         </div>
@@ -32,10 +32,9 @@ require ('includes/header.php');
     include ('home.php');
 }
 ?>
-
+    <div class="container"></div>
 
 <?php
 
 require ('includes/footer.php');
 ?>
-

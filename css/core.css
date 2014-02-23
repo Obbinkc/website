@@ -9,7 +9,16 @@
 root { 
     display: block;
 }
-
+#fs_bg{
+    width: 100%;
+    height:auto;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: -100;
+    min-height: 100%;
+    min-width: 1040px;  
+}
 #leftside_menu a{
     width: 70px;
     background-color: black;
