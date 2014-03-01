@@ -8,10 +8,5 @@
 		include ('home.php');
 	}
 
-
-?>
-
-
-<?php
 	require ('includes/footer.php');
 ?>
