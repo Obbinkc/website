@@ -5,8 +5,8 @@
  */
 require ('core/init.php');
 require ('includes/header.php');
-?>
-<?php if (logged_in() == true) { ?>
+
+if (logged_in() == true) { ?>
 
     <p class="lead">Vakken</p>
     <form class="navbar-form navbar-right" role="search">
