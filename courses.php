@@ -18,7 +18,7 @@ if (logged_in() == true) { ?>
     <div id="leftside_menu">
         <div class="col-md-4 col-lg-offset-0">
             <form>
-                <select name="courses" onchange="showCourse(this.value)">
+                <select class="form-control" name="courses" onchange="showCourse(this.value)">
                     <option value="">Select a year:</option>
                     <option value="1">Year 1</option>
                     <option value="2">year 2</option>
