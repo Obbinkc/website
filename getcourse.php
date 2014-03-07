@@ -6,11 +6,11 @@
         </tr>
         <?php
         require ('core/init.php');
-
+        require ('core/functions/courseFunctions.php');
         $q = intval($_GET['q']);
-
-        $query = "SELECT `course_id`,`name` FROM `courses` WHERE `categoryId` = '" . $q . "'";
-        $result = mysql_query($query);
+        $courses = new courseFunctions();
+       
+        $result =$courses->getCourses($q);
 
 
         while ($row = mysql_fetch_array($result)) {
