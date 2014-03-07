@@ -5,7 +5,7 @@
 	if (logged_in() == true) {
 		include ('loggedin.php');
 	} else {
-		include ('home.php');
+		include ('loginform.php');
 	}
 
 	require ('includes/footer.php');

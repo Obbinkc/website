@@ -21,7 +21,7 @@ if (logged_in() == true) { ?>
                 <select class="form-control" name="courses" onchange="showCourse(this.value)">
                     <option value="">Select a year:</option>
                     <option value="1">Year 1</option>
-                    <option value="2">year 2</option>
+                    <option value="2">Year 2</option>
                     <option value="3">Year 3</option>
                     <option value="4">Year 4</option>
                 </select>
@@ -64,7 +64,7 @@ if (logged_in() == true) { ?>
 
     <?php
 } else {
-    include ('home.php');
+    include ('loginform.php');
 }
 ?>
 <div class="container"></div>
