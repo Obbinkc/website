@@ -3,6 +3,11 @@
 	
 		<p>You are logged in<a href="logout.php"> Logout</a></p>
 		
+		<?php if ($user_data['type'] == 1) { ?>
+			<p>You can make a course here<a href="makecourse.php"> Make Course</a></p>
+	
+		<?php } ?>
+		
 		<div class="panel-group" id="accordion">
 		  <div class="panel panel-default">
 			<div class="panel-heading">
