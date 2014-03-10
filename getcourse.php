@@ -2,8 +2,9 @@
     <table class=" table table-bordered table-hover"> 
         <tr>   <td><b>Course id</b></td>
             <td><b>Course naam</b></td>
-
+           
         </tr>
+        
         <?php
         require ('core/init.php');
         require ('core/functions/courseFunctions.php');
@@ -18,8 +19,12 @@
             echo "<tr>";
             echo "<td>" . $row['course_id'] . "</td>";
             echo "<td>" . $row['name'] . "</td>";
+            $courseId=$row['course_id'];
+            echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteCourse.php?id='.$courseId.'">delete</td>';
+             echo '<td><a href="updateCourse.php?id='.$courseId.'">update</td>';
             echo "</tr>";
         }
+       
         ?>
     </table>
 </div>
