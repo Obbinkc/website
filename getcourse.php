@@ -20,9 +20,11 @@
             echo "<td>" . $row['course_id'] . "</td>";
             echo "<td>" . $row['name'] . "</td>";
             $courseId=$row['course_id'];
+             if ($user_data['type'] == 1) { 
             echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteCourse.php?id='.$courseId.'">delete</td>';
              echo '<td><a href="updateCourse.php?id='.$courseId.'">update</td>';
             echo "</tr>";
+        }
         }
        
         ?>
