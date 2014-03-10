@@ -55,10 +55,11 @@ if (isset($_POST['course-name']) && isset($_POST['courseYear'])) {
     //Checks if courseName is filled in
     if (!empty($courseName)) {
         $courses = new courseFunctions();
-        $result = $courses->getCoursesByName($courseName, $courseyear);
+        $rows = $courses->checkCourseExist($courseName, $courseyear);
+        echo 'rows '. $rows;
       //  echo 'result'. empty($result);
       //  echo "sdfg". $result;
-        if (mysql_num_rows($result) === 1) {
+        if ($rows > 0) {
             echo 'De course ' . $courseName . ' bestaat voor dat jaar al.';
         }
         else {

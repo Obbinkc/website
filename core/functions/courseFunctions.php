@@ -26,8 +26,8 @@ class courseFunctions {
 
     function getCoursesByName($name, $year) {
 
-        $query = "SELECT `name` FROM `courses` WHERE `name` = '" . mysql_real_escape_string($name) . "'" .
-                "AND 'categoryId' ='" . $year . "'";
+        $query = "SELECT name, categoryId FROM `courses` WHERE name = '" . $name . "'" .
+                "AND categoryId ='" . $year . "'";
         $result = mysql_query($query);
         return $result;
        /* if (mysql_num_rows($result) === 1) {
@@ -39,8 +39,12 @@ class courseFunctions {
             $course->setCategoryId($year);
            $add->addCourse($course);
             
-         }*/
-         
+         }*/    
+    }
+    
+    function checkCourseExist($name, $year) {
+        $result = $this->getCoursesByName($name, $year);
+        return mysql_num_rows($result);
     }
     
      public function addCourse($course) {

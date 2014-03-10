@@ -52,8 +52,10 @@ $rows = mysql_fetch_array($result);*/
                    
                 <tr>
             </table>
-            <input name="course_id" type="hidden" id="id" value="<?php echo $row['course_id']; ?>"/>
-           <?php echo $row['course_id'];?>
+            <input name="course_id" type="hidden" id="id" value="<?php echo $courseId; ?>"/>
+           <?php echo $courseId; ?>
+            <?php echo $row['name']; ?>
+            <?php echo $row['categoryId']; ?>
             <input type="submit" name="Submit" value="Submit" /></td>
         <td align="center">&nbsp;</td>
         </td>
