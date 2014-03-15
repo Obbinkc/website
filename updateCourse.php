@@ -7,16 +7,17 @@ require ('includes/header.php');
  * and open the template in the editor.
  */
 
-// get value of id that sent from address bar
+// Gets value of id that was sent from address bar
 $courseId = $_GET['id'];
 
 /*$sql = "SELECT * FROM  WHERE id = '$id'";
 $result = mysql_query($sql);
 $rows = mysql_fetch_array($result);*/
 
-//vanaf hier van mij
+         // Object of the class courseFunctions.
         $courses = new courseFunctions();
-       
+     
+        //Calling the getCourses() method to retrieve the executed query
         $result =$courses->getCourseById($courseId);
         $row = mysql_fetch_array($result);
 

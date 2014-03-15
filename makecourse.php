@@ -48,10 +48,12 @@ require ('core/functions/courseFunctions.php');
 
 <?php
 
+//Checks if course-name and courseYear are set.
 if (isset($_POST['course-name']) && isset($_POST['courseYear'])) {
     $courseName = $_POST['course-name'];
     $courseyear = $_POST['courseYear'];
     //   echo 'test ' . $courseName . $courseyear;
+    
     //Checks if courseName is filled in
     if (!empty($courseName)) {
         $courses = new courseFunctions();
@@ -68,7 +70,7 @@ if (isset($_POST['course-name']) && isset($_POST['courseYear'])) {
             $course = new Course;
             $course->setCoursename($courseName);
             $course->setCategoryId($courseyear);
-
+            
             $courses->addCourse($course);
         }
     } else {

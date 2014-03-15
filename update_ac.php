@@ -9,7 +9,7 @@ echo 'course ID '. $_POST['course_id'];
 echo 'course cat ID '. $_POST['categoryId'];
 echo 'course name '. $_POST['name'];
 
-// update data in mysql database 
+// Updates the course data in mysql database 
 $sql="UPDATE `courses` SET categoryId='" . $_POST['categoryId'] . "', name='" . $_POST['name'] . "' WHERE course_id='" . $_POST['course_id'] . "'";
 
 $result=mysql_query($sql)or 
