@@ -1,12 +1,12 @@
 <?php
 
 //set connection variables
-/*
+
 $host = "145.92.203.240";
 
 $username = "huraibz001";
 
-$password = "welkommij3";
+$password = "welkommij3!";
 
 $db_name = "zhuraibz001"; //database name
 
@@ -23,10 +23,10 @@ echo "Error: Could not connect to database.";
 exit;
 
 }
-*/
-//$mysqli=new mysqli($host, $user, $password, $database, $port, $socket);
+
+
 
 //connect with the database
-mysql_connect('145.92.203.240', 'huraibz001', 'welkommij3!');
-mysql_select_db('zhuraibz001');
+/*mysql_connect('145.92.203.240', 'huraibz001', 'welkommij3!');
+mysql_select_db('zhuraibz001');*/
 ?>

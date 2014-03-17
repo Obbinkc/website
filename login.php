@@ -5,21 +5,21 @@ include ('includes/header.php');
 if (isset($_POST)){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
-	
+	//$user=new UserFunctions();
 	if (empty($username) || empty($password)) { 
 		$errors[] = 'Learn to type dude';
-	} else if (user_exists($username) == false) { ?>
+	} else if (/*$user->*/user_exists($username) == false) { ?>
 		<div class="alert alert-danger">
 			<strong>Crap!</strong>
 			User does not exist
 		</div> <?php
-	} else if (user_active($username) == false) { ?>
+	} else if (/*$user->*/user_active($username) == false) { ?>
 		<div class="alert alert-danger">
 			<strong>Crap!</strong>
 			Account not activated
 		</div> <?php
 	} else {
-		$login = login($username, $password);
+		$login = /*$user->*/login($username, $password);
 		if ($login == false) { ?>
 			<div class="alert alert-danger">
 				<strong>Crap!</strong>
