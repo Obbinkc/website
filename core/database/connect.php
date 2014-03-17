@@ -2,31 +2,29 @@
 
 //set connection variables
 
-$host = "145.92.203.240";
+class Database {
 
-$username = "huraibz001";
-
-$password = "welkommij3!";
-
-$db_name = "zhuraibz001"; //database name
+    private $connection;
+    private $host = "145.92.203.240";
+    private $username = "huraibz001";
+    private $password = "welkommij3!";
+    private $db_name = "zhuraibz001"; //database name
 
 //connect to mysql server
 
-$mysqli = new mysqli($host, $username, $password, $db_name);
+    public static function getDatabaseConnection() {
+        global $host;
+        global $username;
+        global $password;
+        global $db_name;
 
-//check if any connection error was encountered
-
-if(mysqli_connect_errno()) {
-
-echo "Error: Could not connect to database.";
-
-exit;
-
+        //$connection = new mysqli($host, $username, $password, $db_name);
+        $connection = new mysqli("145.92.203.240", "huraibz001", "welkommij3!", "zhuraibz001");
+        return $connection;
+    }
 }
 
-
-
 //connect with the database
-/*mysql_connect('145.92.203.240', 'huraibz001', 'welkommij3!');
-mysql_select_db('zhuraibz001');*/
+/* mysql_connect('145.92.203.240', 'huraibz001', 'welkommij3!');
+  mysql_select_db('zhuraibz001'); */
 ?>

@@ -1,6 +1,5 @@
 <?php
-
-require ('core/database/connect.php');
+//require ('core/database/connect.php');
 //class UserFunctions extends mysqli {
 //this file contains all function related to users
 //function that can be called to get the user data from the database
@@ -28,29 +27,39 @@ function logged_in() {
 
 //function that is called to check if the filled in username exists in the database
 function user_exists($username) {
+    $mysqli = Database::getDatabaseConnection();
     $username = sanitize($username);
     //$query = mysqli_query("SELECT COUNT(`user_id`) FROM `users` WHERE `username` = '$username'");
     //query all records from the database
 
     $query = "SELECT COUNT(`user_id`) FROM `users` WHERE `username` = '$username'";
 //execute the query
-    $mysqli = new mysqli();
     $result = $mysqli->query($query);
 
 //get number of rows returned
 
-    $num_results = $result->num_rows;
+    $num_results = mysqli_num_rows($result);
     //  return ($result->num_rows) ? true : false;
-    return (mysqli_result($num_results, 0) == 1) ? true : false;
+    //return (mysqli_fetch_row($num_results) == 1) ? true : false;
+    if ($num_results > 1) {
+        return false;
+    } 
+   return true;
 //return (mysql_result($num_results, 0) == 1) ? true : false;
     //return (mysql_result($query, 0) == 1) ? true : false;
 }
 
 //function that is called to check if the filled in username is activated
 function user_active($username) {
+     $mysqli = Database::getDatabaseConnection();
     $username = sanitize($username);
-    $query = mysql_query("SELECT COUNT(`user_id`) FROM `users` WHERE `username` = '$username' AND `active` = 1");
-    return (mysql_result($query, 0) == 1) ? true : false;
+   // $query = mysql_query("SELECT COUNT(`user_id`) FROM `users` WHERE `username` = '$username' AND `active` = 1");
+    $query="SELECT COUNT(`user_id`) FROM `users` WHERE `username` = '$username' AND `active` = 1";
+    //execute the query
+    $result = $mysqli->query($query);
+   
+   return (mysqli_data_seek($result) == 1) ? true : false;
+// return (mysql_result($query, 0) == 1) ? true : false;
 }
 
 //function that is called to select the correct user id for the logged in username
