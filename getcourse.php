@@ -19,8 +19,8 @@
         $result = $courses->getCourses($q);
 
         
-        while ($row = mysql_fetch_array($result)) {
-
+        while ($row = $result->fetch_assoc()) {
+            extract($row);
             echo "<tr>";
             echo "<td>" . $row['course_id'] . "</td>";
             echo "<td>" . $row['name'] . "</td>";
