@@ -8,8 +8,8 @@ function user_data($user_id) {
     $mysqli = Database::getDatabaseConnection();
     $query = "SELECT user_id, username, password, first_name, last_name, email, type FROM `users` WHERE user_id ='" . $user_id . "'";
     $result = $mysqli->query($query);
-
-    return $result->fetch_row();
+    $row = $result->fetch_assoc();
+    return $row;
 }
 
 //function that can be called to check the user id of the surrent logged in user
