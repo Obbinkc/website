@@ -6,15 +6,26 @@
 require ('core/init.php');
 require ('includes/header.php');
 
+//searchbar code aangepast
+//<form class="navbar-form navbar-right" role="search" method="post" action="searchresults.php">
+      //<div class="form-group">
+     //       <input type="text" class="form-control" placeholder="Search">
+     //   </div>
+      //  <button type="submit" class="btn btn-default">Submit</button>
+        
+  //  </form>
+
 if (logged_in() == true) { ?>
 
     <p class="lead">Vakken</p>
-    <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+    
+    <p>Search</p>
+    <form class="navbar-form navbar-right" name="form1" method="post" action="searchresults.php">
+        <input name="search" type="text" size="40"/>
+        <input type="submit" name="Submit" value="Submit"/>
+        
+    </form>    
+         
     <div id="leftside_menu">
         <div class="col-md-4 col-lg-offset-0">
             <form>
