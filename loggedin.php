@@ -1,5 +1,5 @@
 
-	<h2>Hello, <?php echo $user_data['first_name']; ?>!</h2>
+	<h2>Hello, <?php echo $user_data[1]; //$_SESSION['user_id'][0];  ?>!</h2>
 	
 		<p>You are logged in<a href="logout.php"> Logout</a></p>
 		

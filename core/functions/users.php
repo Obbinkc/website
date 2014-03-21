@@ -6,25 +6,10 @@
 //function that can be called to get the user data from the database
 function user_data($user_id) {
     $mysqli = Database::getDatabaseConnection();
-    $data = array();
-    $user_id = (int) $user_id;
+    $query = "SELECT user_id, username, password, first_name, last_name, email, type FROM `users` WHERE user_id ='" . $user_id . "'";
+    $result = $mysqli->query($query);
 
-    $func_num_args = func_num_args();
-    $func_get_args = func_get_args();
-
-    if ($func_num_args > 1) {
-        unset($func_get_args[0]);
-
-        $fields = '`' . implode('`, `', $func_get_args) . '`';
-
-        $query = "SELECT $fields FROM `users` WHERE `user_id` = $user_id";
-
-        $stmt = $mysqli->prepare($query);
-        $stmt->execute();
-        return $stmt->fetch();
-
-        // $data = mysql_fetch_assoc(mysql_query("SELECT $fields FROM `users` WHERE `user_id` = $user_id"));
-    }
+    return $result->fetch_row();
 }
 
 //function that can be called to check the user id of the surrent logged in user

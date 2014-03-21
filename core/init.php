@@ -11,9 +11,9 @@ require ('core/functions/users.php');
 //calls the functions to extract all the information from a specific user from the database
 //$user=new UserFunctions();
 if (/*$user->*/logged_in() == true) {
-	$session_user_id = $_SESSION['user_id'];
+	$session_user_id = $_SESSION['user_id'][0];
         
-	$user_data = /*$user->*/user_data($session_user_id, 'user_id', 'username', 'password', 'first_name', 'last_name', 'email', 'type');
+	$user_data = /*$user->*/user_data($session_user_id);
 }
 
 ?>
