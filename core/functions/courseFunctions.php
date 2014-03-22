@@ -34,7 +34,7 @@ class courseFunctions {
 
         $query = "SELECT name, categoryId FROM `courses` WHERE name = '" . $name . "'" .
                 "AND categoryId ='" . $year . "'";
-        $result = mysql_query($query);
+        $result = mysqli_query(Database::getDatabaseConnection(), $query);
         return $result;
        /* if (mysql_num_rows($result) === 1) {
             echo 'De course ' . $name . ' bestaat voor dat jaar al.';
@@ -50,15 +50,15 @@ class courseFunctions {
     
     function checkCourseExist($name, $year) {
         $result = $this->getCoursesByName($name, $year);
-        return mysql_num_rows($result);
+        return mysqli_num_rows($result);
     }
     
      public function addCourse($course) {
 
-        $query = "INSERT INTO `courses` VALUES (NULL,'" . mysql_real_escape_string($course->getCategoryId()) .
-                 "','" . mysql_real_escape_string($course->getCoursename())."')";
+        $query = "INSERT INTO `courses` VALUES (NULL,'" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCategoryId()) .
+                 "','" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCoursename())."')";
         
-        if (mysql_query($query)) {
+        if (mysqli_query(Database::getDatabaseConnection(),$query)) {
            echo 'De course is succesvol is aangemaakt';
         } else {
             echo 'Sorry het aanmaken van een course is niet gelukt. Probeer het later nog eens: ' . mysql_error();
