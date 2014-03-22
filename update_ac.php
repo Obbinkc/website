@@ -12,7 +12,7 @@ echo 'course name '. $_POST['name'];
 // Updates the course data in mysql database 
 $sql="UPDATE `courses` SET categoryId='" . $_POST['categoryId'] . "', name='" . $_POST['name'] . "' WHERE course_id='" . $_POST['course_id'] . "'";
 
-$result=mysql_query($sql)or 
+$result=mysqli_query(Database::getDatabaseConnection(),$sql)or 
 die ("this failed");
 
 

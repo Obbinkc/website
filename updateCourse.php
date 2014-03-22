@@ -19,7 +19,7 @@ $rows = mysql_fetch_array($result);*/
      
         //Calling the getCourses() method to retrieve the executed query
         $result =$courses->getCourseById($courseId);
-        $row = mysql_fetch_array($result);
+        $row = mysqli_fetch_array($result);
 
 
 ?>

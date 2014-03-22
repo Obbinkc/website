@@ -21,12 +21,14 @@ class courseFunctions {
     }
     
       function getCourseById($q) {
-
+        $mysqli = Database::getDatabaseConnection();
         $query = "SELECT 'course_id',`categoryId`,`name` FROM `courses` WHERE `course_id` = '" . $q . "'";
-        $result = mysql_query($query);
-
+//        $result = mysql_query($query);
+        $result = $mysqli->query($query);
         return $result;
     }
+    
+    
 
     function getCoursesByName($name, $year) {
 
