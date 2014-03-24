@@ -21,7 +21,7 @@ root {
 }
 #leftside_menu a{
     width: 70px;
-    background-color: black;
+    
 }
 #leftside_menu .col-md-4 col-lg-offset-0 .nav .nav-pills nav-stacked li a{
     width: 20px;

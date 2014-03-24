@@ -70,9 +70,8 @@ if (logged_in() == true) { ?>
                     }
 
         </script>
-        
-      
-
+     
+     
     <?php
 } else {
     include ('loginform.php');

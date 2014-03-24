@@ -14,7 +14,7 @@
         
         
         $courses = new courseFunctions();
-
+      
         //Calling the getCourses() method to retrieve the executed query
         $result = $courses->getCourses($q);
 
@@ -28,7 +28,10 @@
             if ($user_data['type'] == 1) {
                 echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteCourse.php?id=' . $courseId . '">delete</td>';
                 echo '<td><a href="updateCourse.php?id=' . $courseId . '">update</td>';
+                echo '<td><a href="lessons.php?id=' . $courseId . '">lessons</td>';
                 echo "</tr>";
+                 
+
             }
         }
         ?>
