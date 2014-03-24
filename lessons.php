@@ -23,16 +23,16 @@ require ('includes/header.php');
 
         //Calling the getCourses() method to retrieve the executed query
         $result = $lessons->getLessons($q);
-
+       // var_dump($result);
 
         while ($row = $result->fetch_assoc()) {
             extract($row);
             echo "<tr>";
-            echo "<td>" . $row['co.name'] . "</td>";
-            echo "<td>" . $row['le.lessonId'] . "</td>";
-            echo "<td>" . $row['us.first_name'] . "</td>";
-            echo "<td>" . $row['le.startTime'] . "</td>";
-            echo "<td>" . $row['le.endTime'] . "</td>";
+            echo "<td>" . $row['name'] . "</td>";
+            echo "<td>" . $row['lessonId'] . "</td>";
+            echo "<td>" . $row['first_name'] . "</td>";
+            echo "<td>" . $row['startTime'] . "</td>";
+            echo "<td>" . $row['endTime'] . "</td>";
             $lessonId = $row['course_id'];
             if ($user_data['type'] == 1) {
                 echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteCourse.php?id=' . $lessonId . '">delete</td>';

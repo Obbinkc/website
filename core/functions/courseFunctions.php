@@ -32,7 +32,7 @@ class courseFunctions {
 
     function getCoursesByName($name, $year) {
 
-        $query = "SELECT name, categoryId FROM `courses` WHERE name = '" . $name . "'" .
+        $query = "SELECT name, categoryId FROM courses WHERE name = '" . $name . "'" .
                 "AND categoryId ='" . $year . "'";
         $result = mysqli_query(Database::getDatabaseConnection(), $query);
         return $result;
