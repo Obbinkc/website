@@ -9,7 +9,7 @@ class lessonFunctions {
 
     function getLessons($q) {
         $mysqli = Database::getDatabaseConnection();
-        $query = "SELECT co.name,le.lessonId, us.first_name, le.startTime, le.endTime 
+        $query = "SELECT co.name,le.lessonId, us.first_name, le.startTime, le.endTime, le.course_id
             FROM lessons le inner join courses co on le.course_id = co.course_id
             inner join users us
             on le.user_id = us.user_id

@@ -9,6 +9,7 @@ require ('includes/header.php');
             <td><b>Teacher</b></td>
             <td><b>Lesson start</b></td>
             <td><b>Lesson dismissed</b></td>
+             <td><b>Course id</b></td>
         </tr>
 
         <?php
@@ -33,7 +34,8 @@ require ('includes/header.php');
             echo "<td>" . $row['first_name'] . "</td>";
             echo "<td>" . $row['startTime'] . "</td>";
             echo "<td>" . $row['endTime'] . "</td>";
-            $lessonId = $row['course_id'];
+             echo "<td>" . $row['course_id'] . "</td>";
+            $lessonId = $row['co.course_id'];
             if ($user_data['type'] == 1) {
                 echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteCourse.php?id=' . $lessonId . '">delete</td>';
                 echo '<td><a href="updateCourse.php?id=' . $lessonId . '">update</td>';
