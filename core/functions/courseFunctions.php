@@ -47,6 +47,11 @@ class courseFunctions {
             
          }*/    
     }
+    function getCourseByNameOnly($name){
+        $query = "SELECT course_id FROM courses WHERE name = '" . $name . "'";
+        $result = mysqli_query(Database::getDatabaseConnection(), $query);
+        return $result; 
+    }
     
     function checkCourseExist($name, $year) {
         $result = $this->getCoursesByName($name, $year);
@@ -55,7 +60,7 @@ class courseFunctions {
     
      public function addCourse($course) {
 
-        $query = "INSERT INTO `courses` VALUES (NULL,'" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCategoryId()) .
+        $query = "INSERT INTO `courses` VALUES (NULL,'" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getLessonId()) .
                  "','" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCoursename())."')";
         
         if (mysqli_query(Database::getDatabaseConnection(),$query)) {

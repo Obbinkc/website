@@ -24,6 +24,21 @@ class lessonFunctions {
 
         return $result;
     }
+    
+      public function addLesson($lesson) {
+
+        $query = "INSERT INTO `lessons` VALUES (NULL,'" . mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getLessonId()) .
+                 "','" . mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getCourse_id())."','". 
+                mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getStartTime())."','".
+                mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getEndTime()).
+                "')";
+        
+        if (mysqli_query(Database::getDatabaseConnection(),$query)) {
+           echo 'De les is succesvol is aangemaakt';
+        } else {
+            echo 'Sorry het aanmaken van een course is niet gelukt. Probeer het later nog eens: ' . mysql_error();
+        }
+    }
 
 }
 
