@@ -56,6 +56,13 @@ function user_active($username) {
 // return (mysql_result($query, 0) == 1) ? true : false;
 }
 
+function getTeachers() {
+    $mysqli = Database::getDatabaseConnection();
+    $query = "SELECT user_id, username FROM `users` WHERE type = 1";
+    $result = $mysqli->query($query);
+    return $result;
+}
+
 //function that is called to select the correct user id for the logged in username
 function user_id_from_username($username) {
     $mysqli = Database::getDatabaseConnection();

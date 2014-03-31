@@ -27,3 +27,48 @@ root {
     width: 20px;
   
 }
+div#addLesson {
+    width:300px;
+    float:left;
+    position:relative;
+}
+ 
+#addLesson p {
+    margin:0;
+    padding-left:24px;
+    cursor:pointer;
+    background-image:url('../img/open.png');
+    background-position:left;
+    background-repeat:no-repeat;
+}
+ 
+#addLesson p.close {
+    background-image:url('../img/close.png');
+}
+ 
+#lesson-form {
+    position:absolute;
+    z-index:999;
+    background-color:#fff;
+    border:solid 1px rgb(220,220,220);
+    padding:12px;
+    width:300px;
+    box-shadow:1px 1px 4px rgb(220,220,220);
+    top:40px;
+    left:0;
+    display:none;
+}
+ 
+#lesson-form label {
+    display:block;
+}
+ 
+#lesson-form input[type="text"],
+#lesson-form input[type="password"] {
+    display:block;
+}
+ 
+#lesson-form input,
+#lesson-form label {
+    margin-bottom:4px;
+}
