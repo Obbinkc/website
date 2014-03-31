@@ -27,9 +27,11 @@
      
   </head>
 	<body>
+	
             <img id="fs_bg"src="image/fs bg.jpg">
              <div class="container">
             <!-- row 1: navigation -->
+			<?php if (logged_in() == true && $user_data['type'] == 1) { ?>
             <div class="row">
                 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
                     <div class="navbar-header">
@@ -49,7 +51,7 @@
                         </ul>
                     </div>  
                 </nav>
-            </div>
+            </div> <?php } ?>
         
         </div> <!-- end container -->
 		<div class="container">
