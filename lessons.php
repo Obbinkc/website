@@ -1,4 +1,5 @@
 <?php
+require ('core/init.php');
 require ('includes/header.php');
 require ('models/Lesson.php');
 require ('core/functions/courseFunctions.php');
@@ -22,7 +23,6 @@ require ('core/functions/courseFunctions.php');
         </tr>
 
         <?php
-        require ('core/init.php');
         require ('core/functions/lessonFunctions.php');
 
 
