@@ -42,4 +42,11 @@ class lessonFunctions {
 
 }
 
+      function reglesson($reglesson) {
+        $mysqli = Database::getDatabaseConnection();
+        $query = "SELECT `lescode` FROM `lessons` WHERE `lescode` = '" . $reglesson . "'";
+        $result = $mysqli->query($query);
+        return $result;
+    }
+
 ?>
