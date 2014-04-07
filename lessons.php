@@ -69,7 +69,7 @@ require ('core/functions/courseFunctions.php');
                     <label for="course">Course:</label>
                     <input type="text" name="courseName" id="name" />
 
-                    <select class="form-control" name="teachers" onchange="showCourse(this.value)">
+                    <select class="form-control" name="teachers" >
                         <option value="">Select a teacher:</option>
                         <?php
                         $result = getTeachers();
@@ -103,7 +103,7 @@ if (isset($_POST['courseName']) && isset($_POST['teachers']) && isset($_POST['st
 
     $courseName = $_POST['courseName'];
    // $courseyear = $_POST['courseYear'];
-    $teacher = $_POST['teachers'];
+   // $teacher = $_POST['teachers'];
     $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];
 
@@ -111,7 +111,7 @@ if (isset($_POST['courseName']) && isset($_POST['teachers']) && isset($_POST['st
 
     $courses = new courseFunctions();
 
-    $courseID = $courses->getCourseByNameOnly($courseName);
+    $courseID = $courses->getCourseId($courseName);
 
     $lesson = new Lesson();
     $lesson->setCourse_id($courseID);

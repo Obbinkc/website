@@ -47,7 +47,7 @@ class courseFunctions {
             
          }*/    
     }
-    function getCourseByNameOnly($name){
+    function getCourseId($name){
         $query = "SELECT course_id FROM courses WHERE name = '" . $name . "'";
         $result = mysqli_query(Database::getDatabaseConnection(), $query);
         return $result; 
