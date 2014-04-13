@@ -23,9 +23,13 @@ class courseFunctions {
       function getCourseById($q) {
         $mysqli = Database::getDatabaseConnection();
         $query = "SELECT 'course_id',`categoryId`,`name` FROM `courses` WHERE `course_id` = '" . $q . "'";
-//        $result = mysql_query($query);
         $result = $mysqli->query($query);
-        return $result;
+        
+        while ($row = $result->fetch_object()) {
+            $id = $row['course_id'];
+        }
+        
+        return $id;
     }
     
     
@@ -47,10 +51,18 @@ class courseFunctions {
             
          }*/    
     }
+    
     function getCourseId($name){
+        $id = "";
+        $mysqli = Database::getDatabaseConnection();
         $query = "SELECT course_id FROM courses WHERE name = '" . $name . "'";
-        $result = mysqli_query(Database::getDatabaseConnection(), $query);
-        return $result; 
+        $result = $mysqli->query($query);
+       
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['course_id'];
+        }
+        
+        return $id; 
     }
     
     function checkCourseExist($name, $year) {
@@ -60,7 +72,7 @@ class courseFunctions {
     
      public function addCourse($course) {
 
-        $query = "INSERT INTO `courses` VALUES (NULL,'" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getLessonId()) .
+        $query = "INSERT INTO `courses` VALUES (NULL,'" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCategoryId()) .
                  "','" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCoursename())."')";
         
         if (mysqli_query(Database::getDatabaseConnection(),$query)) {

@@ -26,17 +26,21 @@ class lessonFunctions {
     }
     
       public function addLesson($lesson) {
-
-        $query = "INSERT INTO `lessons` VALUES (NULL,'" . mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getLessonId()) .
-                 "','" . mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getCourse_id())."','". 
+        echo "<br>Lesson USER ID: " . $lesson->getUserId();
+        echo "<br>Lesson course ID: " . $lesson->getCourse_id();
+        echo "<br>Lesson starttime: " . $lesson->getStartTime();
+        echo "<br>Lesson endtime: " . $lesson->getEndTime();
+        
+        $query = "INSERT INTO lessons (lessonId, user_id, course_id, startTime, endTime, lescode) VALUES ('NULL','" . mysqli_real_escape_string(Database::getDatabaseConnection(), $lesson->getUserId()) .
+                 "','" . mysqli_real_escape_string(Database::getDatabaseConnection(), $lesson->getCourse_id()) . "','". 
                 mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getStartTime())."','".
                 mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getEndTime()).
-                "')";
-        
+                "', 'NULL')";
+         var_dump($query);
         if (mysqli_query(Database::getDatabaseConnection(),$query)) {
            echo 'De les is succesvol is aangemaakt';
         } else {
-            echo 'Sorry het aanmaken van een course is niet gelukt. Probeer het later nog eens: ' . mysql_error();
+            echo 'Sorry het aanmaken van een course is niet gelukt. Probeer het later nog eens: ' . mysqli_error(Database::getDatabaseConnection());
         }
     }
 

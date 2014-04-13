@@ -107,15 +107,15 @@ if (isset($_POST['courseName']) && isset($_POST['teachers']) && isset($_POST['st
     $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];
 
-    $teacherId = $row['user_id'];
+    $teacherId = $_POST['teachers'];
 
     $courses = new courseFunctions();
 
     $courseID = $courses->getCourseId($courseName);
 
     $lesson = new Lesson();
+    //$lesson->setLessonId();
     $lesson->setCourse_id($courseID);
-
     $lesson->setEndTime($endTime);
     $lesson->setStartTime($startTime);
     $lesson->setUserId($teacherId);
@@ -123,6 +123,7 @@ if (isset($_POST['courseName']) && isset($_POST['teachers']) && isset($_POST['st
     $lessons = new lessonFunctions();
 
     $lessons->addLesson($lesson);
+   
 }
 ?>
 <?php
