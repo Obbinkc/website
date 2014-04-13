@@ -11,7 +11,18 @@ require ('core/functions/courseFunctions.php');
             $(this).toggleClass('close');
         });
     });
+    function randomString() {
+	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	var string_length = 8;
+	var randomstring = '';
+	for (var i=0; i<string_length; i++) {
+		var rnum = Math.floor(Math.random() * chars.length);
+		randomstring += chars.substring(rnum,rnum+1);
+	}
+	document.randform.randomfield.value = randomstring;
+}
 </script>
+
 <div class="table-responsive">
     <table class=" table table-bordered table-hover"> 
         <tr>   <td><b>Course</b></td>
@@ -20,6 +31,7 @@ require ('core/functions/courseFunctions.php');
             <td><b>Lesson start</b></td>
             <td><b>Lesson dismissed</b></td>
             <td><b>Course id</b></td>
+            <td><b>Lesson code</b></td>
         </tr>
 
         <?php
@@ -44,6 +56,7 @@ require ('core/functions/courseFunctions.php');
             echo "<td>" . $row['startTime'] . "</td>";
             echo "<td>" . $row['endTime'] . "</td>";
             echo "<td>" . $row['course_id'] . "</td>";
+             echo "<td>" . $row['lescode'] . "</td>";
             $lessonId = $row['course_id'];
             if ($user_data['type'] == 1) {
                 echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteCourse.php?id=' . $lessonId . '">delete</td>';
@@ -63,12 +76,12 @@ require ('core/functions/courseFunctions.php');
         <div id="addLesson">
             <p class="lead">Add lesson</p>
             <div id="lesson-form">
-                <form action="#" method="post">
+                <form action="#" method="post" name="randform">
 
 
                     <label for="course">Course:</label>
                     <input type="text" name="courseName" id="name" />
-
+                     <br>
                     <select class="form-control" name="teachers" >
                         <option value="">Select a teacher:</option>
                         <?php
@@ -81,7 +94,7 @@ require ('core/functions/courseFunctions.php');
                         }
                         ?>
                     </select>
-
+                     <br>
                     Example
                     <label style="color: #777777 !important;">2013-12-30 23:15:00</label>
                     <label for="course">Start time:</label>
@@ -89,7 +102,10 @@ require ('core/functions/courseFunctions.php');
 
                     <label for="course">End time:</label>
                     <input type="text" name="endTime" id="name" />
-
+                    <br>
+                    <input type="button" class="btn btn-primary btn-sm" value="Generate a random password" onClick="randomString();">&nbsp;
+                    <input type="text" name="randomfield" value="">
+                    <br>
                     <input type="submit"  class="btn btn-primary" value="Create lesson" />
                 </form>
             </div>
@@ -108,7 +124,7 @@ if (isset($_POST['courseName']) && isset($_POST['teachers']) && isset($_POST['st
     $endTime = $_POST['endTime'];
 
     $teacherId = $_POST['teachers'];
-
+    $lesCode=$_POST['randomfield'];
     $courses = new courseFunctions();
 
     $courseID = $courses->getCourseId($courseName);
@@ -119,13 +135,17 @@ if (isset($_POST['courseName']) && isset($_POST['teachers']) && isset($_POST['st
     $lesson->setEndTime($endTime);
     $lesson->setStartTime($startTime);
     $lesson->setUserId($teacherId);
-
+    $lesson->setLesCode($lesCode);
     $lessons = new lessonFunctions();
 
     $lessons->addLesson($lesson);
    
 }
 ?>
+
+
+
+
 <?php
 require ('includes/footer.php');
 ?>

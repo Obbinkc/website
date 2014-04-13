@@ -12,6 +12,15 @@ class Lesson {
     private $course_id;
     private $startTime;
     private $endTime;
+    private $lesCode;
+    public function getLesCode() {
+        return $this->lesCode;
+    }
+
+    public function setLesCode($lesCode) {
+        $this->lesCode = $lesCode;
+    }
+
     
     public function getLessonId() {
         return $this->lessonId;

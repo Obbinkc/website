@@ -9,7 +9,7 @@ class lessonFunctions {
 
     function getLessons($q) {
         $mysqli = Database::getDatabaseConnection();
-        $query = "SELECT co.name,le.lessonId, us.first_name, le.startTime, le.endTime, le.course_id
+        $query = "SELECT co.name,le.lessonId, us.first_name, le.startTime, le.endTime, le.course_id, le.lescode
             FROM lessons le inner join courses co on le.course_id = co.course_id
             inner join users us
             on le.user_id = us.user_id
@@ -35,7 +35,7 @@ class lessonFunctions {
                  "','" . mysqli_real_escape_string(Database::getDatabaseConnection(), $lesson->getCourse_id()) . "','". 
                 mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getStartTime())."','".
                 mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getEndTime()).
-                "', 'NULL')";
+                "','". mysqli_real_escape_string(Database::getDatabaseConnection(),$lesson->getLesCode())."')";
          var_dump($query);
         if (mysqli_query(Database::getDatabaseConnection(),$query)) {
            echo 'De les is succesvol is aangemaakt';
