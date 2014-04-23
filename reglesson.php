@@ -10,7 +10,13 @@ if (isset($_POST)){
 	if (empty($lesson['lescode'])){ 
 			echo 'crap';
 		} else {
-			echo 'nice';
+			$register_data = array(
+			'first_name'	=> $user_data['first_name'],
+			'last_name'		=> $user_data['last_name'],
+			'lescode'		=> $lesson['lescode']
+			);
+			
+			regUserLesson($register_data);
 		}		
 	}
 	

@@ -52,5 +52,23 @@ class lessonFunctions {
         $result = $mysqli->query($query);
         return $result;
     }
+	
+	  function regUserLesson($register_data){
+		//echo "INSERT INTO `reglesson`(`first_name`, `last_name`, `lescode`) VALUES ('".$register_data['first_name']."','".$register_data['last_name']."','".$register_data['lescode']."')";
+		
+		$query = "INSERT INTO reglesson (first_name, last_name, lescode) VALUES ('"
+		.mysqli_real_escape_string(Database::getDatabaseConnection(),$register_data['first_name'])."','"
+		.mysqli_real_escape_string(Database::getDatabaseConnection(),$register_data['last_name'])."','"
+		.mysqli_real_escape_string(Database::getDatabaseConnection(),$register_data['lescode'])."')";
+		
+		//var_dump($query);
+		
+		if (mysqli_query(Database::getDatabaseConnection(),$query)) {
+           echo 'Gelukt!';
+        } else {
+            echo 'Sorry het is niet gelukt om je te registreren voor de les ' . mysqli_error(Database::getDatabaseConnection());
+        }
+	  }
+	  
 
 ?>
