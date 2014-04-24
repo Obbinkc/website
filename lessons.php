@@ -59,7 +59,7 @@ require ('core/functions/courseFunctions.php');
              echo "<td>" . $row['lescode'] . "</td>";
             $lessonId = $row['course_id'];
             if ($user_data['type'] == 1) {
-                echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteCourse.php?id=' . $lessonId . '">delete</td>';
+                echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteLesson.php?id=' . $lessonId . '">delete</td>';
                 echo '<td><a href="updateCourse.php?id=' . $lessonId . '">update</td>';
                 echo "</tr>";
             }
