@@ -5670,9 +5670,12 @@ button.close {
 }
 .center-block {
   display: block;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
+  width: 40%;
 }
+.lessonform {
+  width: 40%;
+} 
 .pull-right {
   float: right !important;
 }

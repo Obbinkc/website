@@ -1,6 +1,5 @@
 
-<div class="row">
-	<div class="col-xs-4 col-xs-offset-4">
+	<div class="center-block">
 	 
 		<form class="form-signin" role="form" action="login.php" method="post">
 			<h2 class="form-signin-heading">Sign In</h2>
@@ -10,4 +9,3 @@
 		</form>
 	 
 	</div>
-</div>	
