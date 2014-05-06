@@ -70,5 +70,11 @@ class lessonFunctions {
         }
 	  }
 	  
+	  function students($students) {
+		$mysqli = Database::getDatabaseConnection();
+		$query = "SELECT first_name, last_name FROM `reglesson` WHERE lescode ='" . $students . "'";
+		$result = $mysqli->query($query);		
+		return $result;			
+}
 
 ?>
