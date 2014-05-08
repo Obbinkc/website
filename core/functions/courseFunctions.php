@@ -20,18 +20,28 @@ class courseFunctions {
         return $result;
     }
     
-      function getCourseById($q) {
+    /*  function getCourseById($q) {
         $mysqli = Database::getDatabaseConnection();
-        $query = "SELECT 'course_id',`categoryId`,`name` FROM `courses` WHERE `course_id` = '" . $q . "'";
+        $query = "SELECT course_id, categoryId, name FROM courses WHERE course_id = '" . $q . "'";
         $result = $mysqli->query($query);
         
-        while ($row = $result->fetch_object()) {
+       // while ($row = $result->fetch_object()) <--- Deze fetch object zorgde voor een error.
+          while ($row = $result->fetch_row())     
+        {
             $id = $row['course_id'];
         }
         
         return $id;
+    }*/
+      function getCourseById($q) {
+          
+        $mysqli = Database::getDatabaseConnection();
+        $query = "SELECT course_id, categoryId, name FROM courses WHERE course_id = '" . $q . "'";
+        $result = $mysqli->query($query);
+        $row = $result->fetch_assoc();
+
+        return $row;
     }
-    
     
 
     function getCoursesByName($name, $year) {

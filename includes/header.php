@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+//error_reporting(-1);
+include_once './core/functions/users.php';
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
