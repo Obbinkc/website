@@ -10,19 +10,19 @@ if (isset($_POST)){
 		$errors[] = 'Learn to type dude';
 	} else if (/*$user->*/user_exists($username) == false) { ?>
 		<div class="alert alert-danger">
-			<strong>Crap!</strong>
+			<strong>Error!</strong>
 			User does not exist
 		</div> <?php
 	} else if (/*$user->*/user_active($username) == false) { ?>
 		<div class="alert alert-danger">
-			<strong>Crap!</strong>
+			<strong>Error!</strong>
 			Account not activated
 		</div> <?php
 	} else {
 		$login = /*$user->*/login($username, $password);
 		if ($login == false) { ?>
 			<div class="alert alert-danger">
-				<strong>Crap!</strong>
+				<strong>Error!</strong>
 				That username/password combination is incorrect
 			</div> <?php
 		} else {
