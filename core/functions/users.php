@@ -119,9 +119,10 @@ function register_user($username, $password, $first_name, $last_name, $email){
 	$first_name = sanitize($first_name);
 	$last_name = sanitize($last_name);
 	$email = sanitize($email);
+	$active = 1;
 	
-	$query = "INSERT INTO users(username, password, first_name, last_name, email) 
-	VALUES ('".$username."','".$password."','".$first_name."','".$last_name."','".$email."')";
+	$query = "INSERT INTO users(username, password, first_name, last_name, email, active) 
+	VALUES ('".$username."','".$password."','".$first_name."','".$last_name."','".$email."','".$active."')";
 		
 	if (mysqli_query(Database::getDatabaseConnection(),$query)) {
            echo 'U bent succesvol geregistreerd!';
