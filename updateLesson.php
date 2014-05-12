@@ -11,7 +11,7 @@ require ('core/functions/lessonFunctions.php');
 
 // Gets value of id that was sent from address bar
 $lessonId = $_GET['id'];
-
+//echo 'qq' . $lessonId;
 /*$sql = "SELECT * FROM  WHERE id = '$id'";
 $result = mysql_query($sql);
 $rows = mysql_fetch_array($result);*/

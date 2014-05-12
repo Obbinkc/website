@@ -39,6 +39,7 @@ require ('core/functions/courseFunctions.php');
 
         
         $q = intval($_GET['id']);
+        //$q = $_GET['id'];
 
         //echo 'qq' . $q;
         $lessons = new lessonFunctions();
@@ -57,11 +58,13 @@ require ('core/functions/courseFunctions.php');
             echo "<td>" . $row['endTime'] . "</td>";
             echo "<td>" . $row['course_id'] . "</td>";
              echo "<td>" . $row['lescode'] . "</td>";
-            $lessonId = $row['course_id'];
+            $courseId = $row['course_id'];
+            $lessonId=$row['lessonId'];
+            
 			$lescode = $row['lescode'];
             if ($user_data['type'] == 1) {
                 echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteLesson.php?id=' . $lessonId . '">delete</td>';
-                echo '<td><a href="updateLesson.php?id=' . $lessonId . '">update</td>';
+                echo '<td><a href="updateLesson.php?id=' . $courseId . '">update</td>';
 				echo '<td><a href="students.php?id=' . $lescode . '">students</td>';
                 echo "</tr>";
             }
