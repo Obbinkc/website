@@ -16,7 +16,7 @@
         $courses = new courseFunctions();
       
         //Calling the getCourses() method to retrieve the executed query
-        $result = $courses->getCourses($q);
+        $result = $courses->getCoursesByCategoryId($q);
 
         
         while ($row = $result->fetch_assoc()) {

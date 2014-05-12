@@ -64,7 +64,7 @@ require ('core/functions/courseFunctions.php');
 			$lescode = $row['lescode'];
             if ($user_data['type'] == 1) {
                 echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteLesson.php?id=' . $lessonId . '">delete</td>';
-                echo '<td><a href="updateLesson.php?id=' . $courseId . '">update</td>';
+                echo '<td><a href="updateLesson.php?id=' . $lessonId . '">update</td>';
 				echo '<td><a href="students.php?id=' . $lescode . '">students</td>';
                 echo "</tr>";
             }
@@ -84,8 +84,23 @@ require ('core/functions/courseFunctions.php');
                 <form action="#" method="post" name="randform">
 
 
-                    <label for="course">Course:</label>
-                    <input type="text" name="courseName" id="name" />
+                  <!--  <label for="course">Course:</label>
+                    <input type="text" name="courseName" id="name" />-->
+                    
+                       <select class="form-control" name="courses" >
+                        <option value="">Select a course:</option>
+                        <?php
+                        $courseFunction= new courseFunctions();
+                        $courses = $courseFunction->getCourses();
+
+                        while ($row = $courses->fetch_assoc()) {
+                            extract($row);
+                           // echo "<tr>";
+                            echo "<OPTION value=\"" . $row['course_id'] . "\">" . $row['name'] . ".</OPTION>";
+                        }
+                        ?>
+                    </select>
+                    
                      <br>
                     <select class="form-control" name="teachers" >
                         <option value="">Select a teacher:</option>
@@ -120,9 +135,9 @@ require ('core/functions/courseFunctions.php');
 </div>
 
 <?php
-if (isset($_POST['courseName']) && isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['endTime'])) {
+if (isset($_POST['courses']) && isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['endTime'])) {
 
-    $courseName = $_POST['courseName'];
+   // $courseName = $_POST['courseName'];
    // $courseyear = $_POST['courseYear'];
    // $teacher = $_POST['teachers'];
     $startTime = $_POST['startTime'];
@@ -132,7 +147,8 @@ if (isset($_POST['courseName']) && isset($_POST['teachers']) && isset($_POST['st
     $lesCode=$_POST['randomfield'];
     $courses = new courseFunctions();
 
-    $courseID = $courses->getCourseId($courseName);
+   // $courseID = $courses->getCourseId($courseName);
+$courseID = $_POST['courses'];
 
     $lesson = new Lesson();
     //$lesson->setLessonId();
