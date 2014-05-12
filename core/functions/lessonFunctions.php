@@ -10,7 +10,10 @@ class lessonFunctions {
     function updateLesson($lesson) {
 
         // Updates the course data in mysql database
-        $sql = "UPDATE `lessons` SET user_id='" . $lesson->getUserId() . "', name='" . $_POST['name'] . "' WHERE course_id='" . $_POST['course_id'] . "'";
+        $sql = "UPDATE `lessons` SET  user_id='" . $lesson->getUserId() . "', course_id='" . $lesson->getCourse_id().
+                "', startTime='".$lesson->getStartTime(). "', endTime='".$lesson->getEndTime().
+                "', lescode='".$lesson->getLesCode().
+                "' WHERE lessonId='" . $lesson->getLessonId() . "'";
 
         $result = mysqli_query(Database::getDatabaseConnection(), $sql)or
                 die("this failed");

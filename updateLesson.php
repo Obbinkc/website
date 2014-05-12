@@ -33,6 +33,7 @@ require ('core/functions/lessonFunctions.php');
             </tr>
             <tr>
                 <td align="center">&nbsp;</td>
+                <td align="center"><strong>Course</strong></td>
                 <td align="center"><strong>Teacher</strong></td>
                 <td align="center"><strong>Lesson start</strong></td>
                 <td align="center"><strong>Lesson dismissed</strong></td>
@@ -41,6 +42,23 @@ require ('core/functions/lessonFunctions.php');
             </tr>
             <tr>
                 <td>&nbsp;</td>
+                
+                        <td align="center">
+                    <select class="form-control" name="courses" >
+                              <option value="">Select a course:</option>
+                        <?php
+                        $courseFunction= new courseFunctions();
+                        $courses = $courseFunction->getCourses();
+
+                        while ($row = $courses->fetch_assoc()) {
+                            extract($row);
+                           // echo "<tr>";
+                            echo "<OPTION value=\"" . $row['course_id'] . "\">" . $row['name'] . ".</OPTION>";
+                        }
+                        ?>
+                    </select>
+                </td>
+                
                 <td align="center">
                     <select class="form-control" name="teachers" >
                         <option value="">Select a teacher:</option>
@@ -104,15 +122,17 @@ $row = $result;
  * and open the template in the editor.
  */
 
-if (isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['endTime'])&& isset($_POST['lescode'])) {
+if (isset($_POST['courses']) && isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['endTime'])&& isset($_POST['lescode'])) {
  $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];
 
     $teacherId = $_POST['teachers'];
     $lesCode=$_POST['randomfield'];
-
+$courseID = $_POST['courses'];
     $lesson = new Lesson();
     
+    $lesson->setLessonId($lessonId);
+     $lesson->setCourse_id($courseID);
      $lesson->setEndTime($endTime);
     $lesson->setStartTime($startTime);
     $lesson->setUserId($teacherId);
