@@ -75,7 +75,9 @@ function user_active($username) {
 function getTeachers() {
     $mysqli = Database::getDatabaseConnection();
     $query = "SELECT user_id, username FROM `users` WHERE type = 1";
+    //echo "query".$query;
     $result = $mysqli->query($query);
+    //echo "getTeach method declareation". $result;
     return $result;
 }
 

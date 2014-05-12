@@ -7,6 +7,27 @@
 
 class lessonFunctions {
 
+       function getLessonById($q) {
+          
+        $mysqli = Database::getDatabaseConnection();
+        $query = "SELECT  startTime, endTime, lescode FROM lessons "
+                . " WHERE lessonId = '" . $q . "'";
+        
+
+      // echo "query lesson" .$query;
+       //var_dump($query);
+        $result = $mysqli->query($query);
+      //  echo "query result ". $result;
+       // var_dump($result);
+        
+       $row = $result->fetch_assoc();
+
+        return $row;
+       // return $result;
+        
+         
+    }
+    
     function getLessons($q) {
         $mysqli = Database::getDatabaseConnection();
         $query = "SELECT co.name,le.lessonId, us.first_name, le.startTime, le.endTime, le.course_id, le.lescode

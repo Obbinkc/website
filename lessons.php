@@ -37,10 +37,10 @@ require ('core/functions/courseFunctions.php');
         <?php
         require ('core/functions/lessonFunctions.php');
 
-
+        
         $q = intval($_GET['id']);
 
-        echo 'qq' . $q;
+        //echo 'qq' . $q;
         $lessons = new lessonFunctions();
 
         //Calling the getCourses() method to retrieve the executed query
@@ -61,7 +61,7 @@ require ('core/functions/courseFunctions.php');
 			$lescode = $row['lescode'];
             if ($user_data['type'] == 1) {
                 echo '<td><a onclick="return confirm(\'Delete course? \')" href="deleteLesson.php?id=' . $lessonId . '">delete</td>';
-                echo '<td><a href="updateCourse.php?id=' . $lessonId . '">update</td>';
+                echo '<td><a href="updateLesson.php?id=' . $lessonId . '">update</td>';
 				echo '<td><a href="students.php?id=' . $lescode . '">students</td>';
                 echo "</tr>";
             }
@@ -91,7 +91,7 @@ require ('core/functions/courseFunctions.php');
 
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
-                            echo "<tr>";
+                           // echo "<tr>";
                             echo "<OPTION value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
                         }
                         ?>

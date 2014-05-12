@@ -52,7 +52,7 @@ $rows = mysql_fetch_array($result);*/
                         <input name="categoryId" type="text" id="Number" value="<?php echo $row['categoryId']; ?>" size="15"/>
                     </td>
                    
-                <tr>
+                </tr>
             </table>
             <input name="course_id" type="hidden" id="id" value="<?php echo $courseId; ?>"/>
            <?php echo $courseId; ?>
