@@ -77,8 +77,5 @@ if (logged_in() == true) { ?>
     include ('loginform.php');
 }
 ?>
-<div class="container"></div>
 
-<?php
-require ('includes/footer.php');
-?>
+

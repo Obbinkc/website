@@ -45,6 +45,15 @@ div#addLesson {
 #addLesson p.close {
     background-image:url('../img/close.png');
 }
+.inner{
+  
+  
+}
+.container{
+    
+   
+ background-color: rgba(22,45,50,0.5);
+}
  
 #lesson-form {
     position:absolute;
