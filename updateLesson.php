@@ -3,6 +3,7 @@ require '/core/database/connect.php';
 require ('core/functions/courseFunctions.php');
 require ('includes/header.php');
 require ('core/functions/lessonFunctions.php');
+require ('models/Lesson.php');
 //require ('core/functions/users.php');
 ?>
 <script>
@@ -18,7 +19,7 @@ require ('core/functions/lessonFunctions.php');
 	document.form1.randomfield.value = randomstring;
 }
 </script>
-<form name="form1" method="post">
+<form name="form1" method="post" action="updateLesson.php">
     <td>
         <table width="100%" border="0" cellspacing="1" cellpadding="0">
             <tr>
@@ -75,8 +76,16 @@ while ($row = $result->fetch_assoc()) {
                     </select>
                 </td>
 <?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $lessonId = $_POST["lessonId"];
+    echo "IK BEN VAN DE FORM".$lessonId;
+} else{
 // Gets value of id that was sent from address bar
 $lessonId = $_GET['id'];
+echo"ik ben van de URL". $lessonId;
+}
+
 //echo 'qq' . $lessonId;
 /* $sql = "SELECT * FROM  WHERE id = '$id'";
   $result = mysql_query($sql);
@@ -92,20 +101,20 @@ $row = $result;
 ?>
 
                 <td align="center">
-                    <input name="categoryId" type="text" id="Number" value="<?php echo $row['startTime']; ?>" size="20"/>
+                    <input name="startTime" type="text" id="startTime" value="<?php echo $row['startTime']; ?>" size="20"/>
                 </td>
                  <td align="center">
-                    <input name="categoryId" type="text" id="Number" value="<?php echo $row['endTime']; ?>" size="20"/>
+                    <input name="endTime" type="text" id="endTime" value="<?php echo $row['endTime']; ?>" size="20"/>
                 </td>
                 <td align="center">
-                    <input name="randomfield" type="text" id="Number" value="<?php echo $row['lescode']; ?>" size="15"/>
+                    <input name="randomfield" type="text" id="lescode" value="<?php echo $row['lescode']; ?>" size="15"/>
                     <input type="button" class="btn btn-primary btn-sm" value="Generate a random password" onClick="randomString();">&nbsp;
                     
                 </td>
                 
             </tr>
         </table>
-        <input name="course_id" type="hidden" id="id" value="<?php echo $lessonId; ?>"/>
+        <input name="lessonId" type="hidden" id="lessonId" value="<?php echo $lessonId; ?>"/>
 
         <br>
         
@@ -122,14 +131,22 @@ $row = $result;
  * and open the template in the editor.
  */
 
-if (isset($_POST['courses']) && isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['endTime'])&& isset($_POST['lescode'])) {
+if (isset($_POST['teachers'])) {
  $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];
 
     $teacherId = $_POST['teachers'];
     $lesCode=$_POST['randomfield'];
 $courseID = $_POST['courses'];
-    $lesson = new Lesson();
+    
+ //echo "<br>Lesson USER ID: " . $lesson->getUserId();
+        echo "<br>Lesson course ID: " . $courseID;
+        echo "<br>Lesson starttime: " . $startTime;
+        echo "<br>Lesson endtime: " . $endTime;
+        echo "<br>Lesson lescode: " . $lesCode;
+            echo "<br>COURSE ID " . $courseID;
+
+$lesson = new Lesson();
     
     $lesson->setLessonId($lessonId);
      $lesson->setCourse_id($courseID);
