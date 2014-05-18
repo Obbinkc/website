@@ -7,17 +7,17 @@ require ('models/Lesson.php');
 //require ('core/functions/users.php');
 ?>
 <script>
- 
+
     function randomString() {
-	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-	var string_length = 8;
-	var randomstring = '';
-	for (var i=0; i<string_length; i++) {
-		var rnum = Math.floor(Math.random() * chars.length);
-		randomstring += chars.substring(rnum,rnum+1);
-	}
-	document.form1.randomfield.value = randomstring;
-}
+        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        var string_length = 8;
+        var randomstring = '';
+        for (var i = 0; i < string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum, rnum + 1);
+        }
+        document.form1.randomfield.value = randomstring;
+    }
 </script>
 <form name="form1" method="post" action="updateLesson.php">
     <td>
@@ -43,81 +43,107 @@ require ('models/Lesson.php');
             </tr>
             <tr>
                 <td>&nbsp;</td>
-                
-                        <td align="center">
+
+                <td align="center">
                     <select class="form-control" name="courses" >
-                              <option value="">Select a course:</option>
+                        <option value="">Select a course:</option>
                         <?php
-                        $courseFunction= new courseFunctions();
+                        $courseFunction = new courseFunctions();
                         $courses = $courseFunction->getCourses();
 
+                        $selectedCourse = $_GET['course'];
+                        echo "selectedCourse" . $selectedCourse;
                         while ($row = $courses->fetch_assoc()) {
                             extract($row);
-                           // echo "<tr>";
-                            echo "<OPTION value=\"" . $row['course_id'] . "\">" . $row['name'] . ".</OPTION>";
+                            // echo "<tr>";
+                            if ($selectedCourse == $row['name']) {
+                                echo "<OPTION selected value=\"" . $row['course_id'] . "\">" . $row['name'] . ".</OPTION>";
+                            }
+                            if ($selectedCourse != $row['name']) {
+                                echo "<OPTION value=\"" . $row['course_id'] . "\">" . $row['name'] . ".</OPTION>";
+                            }
                         }
                         ?>
                     </select>
                 </td>
-                
+
                 <td align="center">
                     <select class="form-control" name="teachers" >
                         <option value="">Select a teacher:</option>
-<?php
-$result = getTeachers();
-// echo'geteachers'.$result;
-//var_dump($result);
-while ($row = $result->fetch_assoc()) {
-    extract($row);
-    // echo "<tr>";
-    echo "<OPTION value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
-}
-?>
+                        <?php
+                        $selectedTeacher = $_GET['teacher'];
+                        $result = getTeachers();
+                        // echo'geteachers'.$result;
+                        //var_dump($result);
+                        //$_POST[$row['first_name']] 
+
+                        while ($row = $result->fetch_assoc()) {
+                            extract($row);
+                            // echo "<tr>";
+                            if ($selectedTeacher == $row['username']) {
+                                echo "<OPTION  selected value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
+                            }
+                            if ($selectedTeacher != $row['username']) {
+                                echo "<OPTION value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
+                            }
+                        }
+
+                        /*
+                          while ($row = $result->fetch_assoc()) {
+                          extract($row);
+                          $option = "<OPTION";
+
+                          if ($selectedOption == $row['username'])
+                          $option = $option . " selected";
+
+                          $option . " value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
+                          echo $option;
+                          } */
+                        ?>
                     </select>
                 </td>
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $lessonId = $_POST["lessonId"];
-    echo "IK BEN VAN DE FORM".$lessonId;
-} else{
+                <?php
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $lessonId = $_POST["lessonId"];
+                    //  echo "IK BEN VAN DE FORM" . $lessonId;
+                } else {
 // Gets value of id that was sent from address bar
-$lessonId = $_GET['id'];
-echo"ik ben van de URL". $lessonId;
-}
+                    $lessonId = $_GET['id'];
+                    //   echo"ik ben van de URL" . $lessonId;
+                }
 
 //echo 'qq' . $lessonId;
-/* $sql = "SELECT * FROM  WHERE id = '$id'";
-  $result = mysql_query($sql);
-  $rows = mysql_fetch_array($result); */
+                /* $sql = "SELECT * FROM  WHERE id = '$id'";
+                  $result = mysql_query($sql);
+                  $rows = mysql_fetch_array($result); */
 
 // Object of the class courseFunctions.
-$lessons = new lessonFunctions();
+                $lessons = new lessonFunctions();
 
 //Calling the getCourses() method to retrieve the executed query
-$result = $lessons->getLessonById($lessonId);
+                $result = $lessons->getLessonById($lessonId);
 // $row = mysqli_fetch_array($result);
-$row = $result;
-?>
+                $row = $result;
+                ?>
 
                 <td align="center">
                     <input name="startTime" type="text" id="startTime" value="<?php echo $row['startTime']; ?>" size="20"/>
                 </td>
-                 <td align="center">
+                <td align="center">
                     <input name="endTime" type="text" id="endTime" value="<?php echo $row['endTime']; ?>" size="20"/>
                 </td>
                 <td align="center">
                     <input name="randomfield" type="text" id="lescode" value="<?php echo $row['lescode']; ?>" size="15"/>
                     <input type="button" class="btn btn-primary btn-sm" value="Generate a random password" onClick="randomString();">&nbsp;
-                    
+
                 </td>
-                
+
             </tr>
         </table>
         <input name="lessonId" type="hidden" id="lessonId" value="<?php echo $lessonId; ?>"/>
 
         <br>
-        
+
         <button type="submit" class="btn btn-default">Submit</button></td>
     <td align="center">&nbsp;</td>
 </td>
@@ -132,33 +158,30 @@ $row = $result;
  */
 
 if (isset($_POST['teachers'])) {
- $startTime = $_POST['startTime'];
+    $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];
 
     $teacherId = $_POST['teachers'];
-    $lesCode=$_POST['randomfield'];
-$courseID = $_POST['courses'];
-    
- //echo "<br>Lesson USER ID: " . $lesson->getUserId();
-        echo "<br>Lesson course ID: " . $courseID;
-        echo "<br>Lesson starttime: " . $startTime;
-        echo "<br>Lesson endtime: " . $endTime;
-        echo "<br>Lesson lescode: " . $lesCode;
-            echo "<br>COURSE ID " . $courseID;
+    $lesCode = $_POST['randomfield'];
+    $courseID = $_POST['courses'];
 
-$lesson = new Lesson();
-    
+    //echo "<br>Lesson USER ID: " . $lesson->getUserId();
+    echo "<br>Lesson course ID: " . $courseID;
+    echo "<br>Lesson starttime: " . $startTime;
+    echo "<br>Lesson endtime: " . $endTime;
+    echo "<br>Lesson lescode: " . $lesCode;
+    echo "<br>COURSE ID " . $courseID;
+
+    $lesson = new Lesson();
+
     $lesson->setLessonId($lessonId);
-     $lesson->setCourse_id($courseID);
-     $lesson->setEndTime($endTime);
+    $lesson->setCourse_id($courseID);
+    $lesson->setEndTime($endTime);
     $lesson->setStartTime($startTime);
     $lesson->setUserId($teacherId);
     $lesson->setLesCode($lesCode);
     $lessons = new lessonFunctions();
     $lessons->updateLesson($lesson);
-    
-
-
 }
 ?>
 

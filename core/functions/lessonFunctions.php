@@ -100,6 +100,14 @@ function reglesson($reglesson) {
     $result = $mysqli->query($query);
     return $result;
 }
+function getDateTimesOfLesson($reglesson) {
+    $mysqli = Database::getDatabaseConnection();
+    $query = "SELECT startTime, endTime FROM `lessons` WHERE `lescode` = '" . $reglesson . "'";
+    $result = $mysqli->query($query);
+    //var_dump($query);
+    //var_dump($result);
+    return $result;
+}
 
 function regUserLesson($register_data) {
     //echo "INSERT INTO `reglesson`(`first_name`, `last_name`, `lescode`) VALUES ('".$register_data['first_name']."','".$register_data['last_name']."','".$register_data['lescode']."')";
