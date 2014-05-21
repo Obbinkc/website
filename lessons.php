@@ -75,7 +75,7 @@ require ('core/functions/courseFunctions.php');
 <?php
 ?>
 
-<div class="container">
+<div class="container-fluid">
     <?php if ($user_data['type'] == 1) { ?>
 
         <div id="addLesson">
