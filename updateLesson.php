@@ -1,5 +1,5 @@
 <?php
-require ('/core/database/connect.php');
+require ('./core/database/connect.php');
 require ('core/functions/courseFunctions.php');
 require ('includes/header.php');
 require ('core/functions/lessonFunctions.php');
@@ -105,7 +105,7 @@ require ('models/Lesson.php');
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $lessonId = $_POST["lessonId"];
-                    //  echo "IK BEN VAN DE FORM" . $lessonId;
+                     echo "IK BEN VAN DE FORM" . $lessonId;
                 } else {
 // Gets value of id that was sent from address bar
                     $lessonId = $_GET['id'];
