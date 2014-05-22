@@ -1,5 +1,5 @@
 <?php
-require '/core/database/connect.php';
+require ('/core/database/connect.php');
 require ('core/functions/courseFunctions.php');
 require ('includes/header.php');
 /*

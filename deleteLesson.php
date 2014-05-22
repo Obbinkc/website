@@ -1,5 +1,5 @@
 <?php
-require '/core/database/connect.php';
+require ('/core/database/connect.php');
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
