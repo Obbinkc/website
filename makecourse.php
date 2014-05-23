@@ -52,15 +52,12 @@ require ('core/functions/courseFunctions.php');
 if (isset($_POST['course-name']) && isset($_POST['courseYear'])) {
     $courseName = $_POST['course-name'];
     $courseyear = $_POST['courseYear'];
-    //   echo 'test ' . $courseName . $courseyear;
     
     //Checks if courseName is filled in
     if (!empty($courseName)) {
         $courses = new courseFunctions();
         $rows = $courses->checkCourseExist($courseName, $courseyear);
         echo 'rows '. $rows;
-      //  echo 'result'. empty($result);
-      //  echo "sdfg". $result;
         if ($rows > 0) {
             echo 'De course ' . $courseName . ' bestaat voor dat jaar al.';
         }

@@ -73,9 +73,6 @@ require ('models/Lesson.php');
                         <?php
                         $selectedTeacher = $_GET['teacher'];
                         $result = getTeachers();
-                        // echo'geteachers'.$result;
-                        //var_dump($result);
-                        //$_POST[$row['first_name']] 
 
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
@@ -87,42 +84,22 @@ require ('models/Lesson.php');
                                 echo "<OPTION value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
                             }
                         }
-
-                        /*
-                          while ($row = $result->fetch_assoc()) {
-                          extract($row);
-                          $option = "<OPTION";
-
-                          if ($selectedOption == $row['username'])
-                          $option = $option . " selected";
-
-                          $option . " value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
-                          echo $option;
-                          } */
                         ?>
                     </select>
                 </td>
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $lessonId = $_POST["lessonId"];
-                     echo "IK BEN VAN DE FORM" . $lessonId;
+                    echo "IK BEN VAN DE FORM" . $lessonId;
                 } else {
-// Gets value of id that was sent from address bar
+                    // Gets value of id that was sent from address bar
                     $lessonId = $_GET['id'];
                     //   echo"ik ben van de URL" . $lessonId;
                 }
 
-//echo 'qq' . $lessonId;
-                /* $sql = "SELECT * FROM  WHERE id = '$id'";
-                  $result = mysql_query($sql);
-                  $rows = mysql_fetch_array($result); */
-
 // Object of the class courseFunctions.
                 $lessons = new lessonFunctions();
-
-//Calling the getCourses() method to retrieve the executed query
                 $result = $lessons->getLessonById($lessonId);
-// $row = mysqli_fetch_array($result);
                 $row = $result;
                 ?>
 
@@ -150,13 +127,6 @@ require ('models/Lesson.php');
 </form>
 
 <?php
-//require '/core/database/connect.php';
-//require ('includes/header.php');
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 if (isset($_POST['teachers'])) {
     $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];

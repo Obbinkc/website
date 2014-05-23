@@ -1,28 +1,23 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 class lessonFunctions {
 
     function updateLesson($lesson) {
- echo "<br>Lesson USER ID: " . $lesson->getUserId();
+        echo "<br>Lesson USER ID: " . $lesson->getUserId();
         echo "<br>Lesson course ID: " . $lesson->getCourse_id();
         echo "<br>Lesson starttime: " . $lesson->getStartTime();
         echo "<br>Lesson endtime: " . $lesson->getEndTime();
         echo "<br>Lesson lescode: " . $lesson->getLesCode();
-            echo "<br>Lesson lessonId: " . $lesson->getLessonId();
-        
-        
+        echo "<br>Lesson lessonId: " . $lesson->getLessonId();
+
+
         // Updates the course data in mysql database
-        $sql = "UPDATE `lessons` SET  user_id='" . $lesson->getUserId() . "', course_id='" . $lesson->getCourse_id().
-                "', startTime='".$lesson->getStartTime(). "', endTime='".$lesson->getEndTime().
-                "', lescode='".$lesson->getLesCode().
+        $sql = "UPDATE `lessons` SET  user_id='" . $lesson->getUserId() . "', course_id='" . $lesson->getCourse_id() .
+                "', startTime='" . $lesson->getStartTime() . "', endTime='" . $lesson->getEndTime() .
+                "', lescode='" . $lesson->getLesCode() .
                 "' WHERE lessonId='" . $lesson->getLessonId() . "'";
 
-        $result = mysqli_query(Database::getDatabaseConnection(), $sql)or
+        $result = mysqli_query(Database::getDatabaseConnection(), $sql) or
                 die("this failed");
 
 
@@ -41,18 +36,10 @@ class lessonFunctions {
         $mysqli = Database::getDatabaseConnection();
         $query = "SELECT  startTime, endTime, lescode FROM lessons "
                 . " WHERE lessonId = '" . $q . "'";
-
-
-        // echo "query lesson" .$query;
-        //var_dump($query);
         $result = $mysqli->query($query);
-        //  echo "query result ". $result;
-        // var_dump($result);
-
         $row = $result->fetch_assoc();
 
         return $row;
-        // return $result;
     }
 
     function getLessons($q) {
@@ -63,12 +50,7 @@ class lessonFunctions {
             on le.user_id = us.user_id
             WHERE le.course_id = '" . $q . "'";
 
-
-        //$result = mysql_query($query);
         $result = $mysqli->query($query);
-        //$num_results = mysqli_num_rows($result);
-        //  $row = $result->num_rows();
-        // $num_results = mysqli_num_rows($result);
 
         return $result;
     }
@@ -100,6 +82,7 @@ function reglesson($reglesson) {
     $result = $mysqli->query($query);
     return $result;
 }
+
 function getDateTimesOfLesson($reglesson) {
     $mysqli = Database::getDatabaseConnection();
     $query = "SELECT startTime, endTime FROM `lessons` WHERE `lescode` = '" . $reglesson . "'";

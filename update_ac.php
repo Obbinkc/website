@@ -15,7 +15,6 @@ $sql="UPDATE `courses` SET categoryId='" . $_POST['categoryId'] . "', name='" . 
 $result=mysqli_query(Database::getDatabaseConnection(),$sql)or 
 die ("this failed");
 
-
 // if successfully updated. 
 if($result){
 echo "Successful";

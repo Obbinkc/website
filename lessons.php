@@ -12,15 +12,15 @@ require ('core/functions/courseFunctions.php');
         });
     });
     function randomString() {
-	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-	var string_length = 8;
-	var randomstring = '';
-	for (var i=0; i<string_length; i++) {
-		var rnum = Math.floor(Math.random() * chars.length);
-		randomstring += chars.substring(rnum,rnum+1);
-	}
-	document.randform.randomfield.value = randomstring;
-}
+        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        var string_length = 8;
+        var randomstring = '';
+        for (var i = 0; i < string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum, rnum + 1);
+        }
+        document.randform.randomfield.value = randomstring;
+    }
 </script>
 
 <div class="table-responsive">
@@ -37,10 +37,9 @@ require ('core/functions/courseFunctions.php');
         <?php
         require ('core/functions/lessonFunctions.php');
 
-        
+
         $q = intval($_GET['id']);
         //$q = $_GET['id'];
-
         //echo 'qq' . $q;
         $lessons = new lessonFunctions();
 
@@ -57,15 +56,15 @@ require ('core/functions/courseFunctions.php');
             echo "<td>" . $row['startTime'] . "</td>";
             echo "<td>" . $row['endTime'] . "</td>";
             echo "<td>" . $row['course_id'] . "</td>";
-             echo "<td>" . $row['lescode'] . "</td>";
+            echo "<td>" . $row['lescode'] . "</td>";
             $courseId = $row['course_id'];
-            $lessonId=$row['lessonId'];
-            
-			$lescode = $row['lescode'];
+            $lessonId = $row['lessonId'];
+
+            $lescode = $row['lescode'];
             if ($user_data['type'] == 1) {
-                echo '<td><a onclick="return confirm(\'Delete lesson? \')" href="deleteLesson.php?id=' . $lessonId .'&courseId='. $q. '">delete</td>';
-                echo '<td><a href="updateLesson.php?id=' . $lessonId .'&teacher='. $row['first_name']. '&course='.$row['name'].'">update</td>';
-				echo '<td><a href="students.php?id=' . $lescode . '">students</td>';
+                echo '<td><a onclick="return confirm(\'Delete lesson? \')" href="deleteLesson.php?id=' . $lessonId . '&courseId=' . $q . '">delete</td>';
+                echo '<td><a href="updateLesson.php?id=' . $lessonId . '&teacher=' . $row['first_name'] . '&course=' . $row['name'] . '">update</td>';
+                echo '<td><a href="students.php?id=' . $lescode . '">students</td>';
                 echo "</tr>";
             }
         }
@@ -84,24 +83,24 @@ require ('core/functions/courseFunctions.php');
                 <form action="#" method="post" name="randform">
 
 
-                  <!--  <label for="course">Course:</label>
-                    <input type="text" name="courseName" id="name" />-->
-                    
-                       <select class="form-control" name="courses" >
+                    <!--  <label for="course">Course:</label>
+                      <input type="text" name="courseName" id="name" />-->
+
+                    <select class="form-control" name="courses" >
                         <option value="">Select a course:</option>
                         <?php
-                        $courseFunction= new courseFunctions();
+                        $courseFunction = new courseFunctions();
                         $courses = $courseFunction->getCourses();
 
                         while ($row = $courses->fetch_assoc()) {
                             extract($row);
-                           // echo "<tr>";
+                            // echo "<tr>";
                             echo "<OPTION value=\"" . $row['course_id'] . "\">" . $row['name'] . ".</OPTION>";
                         }
                         ?>
                     </select>
-                    
-                     <br>
+
+                    <br>
                     <select class="form-control" name="teachers" >
                         <option value="">Select a teacher:</option>
                         <?php
@@ -109,12 +108,12 @@ require ('core/functions/courseFunctions.php');
 
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
-                           // echo "<tr>";
+                            // echo "<tr>";
                             echo "<OPTION value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
                         }
                         ?>
                     </select>
-                     <br>
+                    <br>
                     Example
                     <label style="color: #777777 !important;">2013-12-30 23:15:00</label>
                     <label for="course">Start time:</label>
@@ -136,22 +135,15 @@ require ('core/functions/courseFunctions.php');
 
 <?php
 if (isset($_POST['courses']) && isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['endTime'])) {
-
-   // $courseName = $_POST['courseName'];
-   // $courseyear = $_POST['courseYear'];
-   // $teacher = $_POST['teachers'];
     $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];
 
     $teacherId = $_POST['teachers'];
-    $lesCode=$_POST['randomfield'];
+    $lesCode = $_POST['randomfield'];
     $courses = new courseFunctions();
-
-   // $courseID = $courses->getCourseId($courseName);
-$courseID = $_POST['courses'];
+    $courseID = $_POST['courses'];
 
     $lesson = new Lesson();
-    //$lesson->setLessonId();
     $lesson->setCourse_id($courseID);
     $lesson->setEndTime($endTime);
     $lesson->setStartTime($startTime);
@@ -160,12 +152,8 @@ $courseID = $_POST['courses'];
     $lessons = new lessonFunctions();
 
     $lessons->addLesson($lesson);
-   
 }
 ?>
-
-
-
 
 <?php
 require ('includes/footer.php');

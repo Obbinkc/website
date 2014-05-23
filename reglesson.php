@@ -7,12 +7,10 @@ $currentDateTime = date("Y-m-d H:i:s");
 //echo "current time" . $currentDateTime;
 if (isset($_POST)) {
     $reglesson = $_POST['lessonnumber'];
-    $result = /* $user-> */reglesson($reglesson);
+    $result = reglesson($reglesson);
 
     $ResultDateTimeLesson = getDateTimesOfLesson($reglesson);
     $DateTimeLesson = $ResultDateTimeLesson->fetch_assoc();
-    //   echo "lol ".  $DateTimeLesson;
-   // echo "starttijd " . $DateTimeLesson['startTime'];
     $lesson = $result->fetch_assoc();
     if (empty($lesson['lescode'])) {
         echo 'crap';

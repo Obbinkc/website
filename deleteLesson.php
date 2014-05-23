@@ -7,7 +7,7 @@ require ('./core/database/connect.php');
 //Deletes the course from database
 $lessonId = $_GET['id'];
 $courseId=$_GET['courseId'];
-//echo 'qq' . $lessonId;
+
 
 mysqli_query(Database::getDatabaseConnection(),"DELETE FROM lessons WHERE lessonId = '".$lessonId."'");
 
