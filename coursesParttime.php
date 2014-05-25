@@ -17,7 +17,7 @@ require ('includes/header.php');
 
 if (logged_in() == true) { ?>
 
-    <p class="lead">Vakken voltijd</p>
+    <p class="lead">Vakken deeltijd</p>
     
     <h4 class="text-right">Search                </h4>
     <form class="navbar-form navbar-right" name="form1" method="post" action="searchresults.php">

@@ -50,7 +50,8 @@ include_once './core/functions/users.php';
                         <ul class="nav navbar-nav">
                             <li><a href="index.php">Home</a></li>
                             <li><a href="courses.php">Voltijd</a></li>
-                            <li ><a href="#">Deeltijd</a></li>
+                            <li ><a href="coursesParttime.php">Deeltijd</a></li>
+                            <li ><a href="coursesDualtime.php">Duaal</a></li>
                             <li><a href="#">Contact</a></li>  
                         </ul>
                     </div>  
