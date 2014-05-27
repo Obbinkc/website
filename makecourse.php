@@ -17,6 +17,19 @@ require ('core/functions/courseFunctions.php');
                 <p class="help-block"></p>
             </div>
         </div>
+         <br>
+                    <select class="form-control" name="teachers" >
+                        <option value="">Select a teacher:</option>
+                        <?php
+                        $result = getTeachers();
+
+                        while ($row = $result->fetch_assoc()) {
+                            extract($row);
+                            // echo "<tr>";
+                            echo "<OPTION value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
+                        }
+                        ?>
+                    </select>
         <label class="control-label">The year where the course is given</label>
         <div class="radio">
             <label>
