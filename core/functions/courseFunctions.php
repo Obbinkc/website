@@ -55,7 +55,8 @@ class courseFunctions {
      public function addCourse($course) {
 
         $query = "INSERT INTO `courses` VALUES (NULL,'" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCategoryId()) .
-                 "','" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCoursename())."')";
+                 "','" . mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCoursename()). 
+                "','" .mysqli_real_escape_string(Database::getDatabaseConnection(),$course->getCoursetype())."')";
         
         if (mysqli_query(Database::getDatabaseConnection(),$query)) {
            echo 'De course is succesvol is aangemaakt';

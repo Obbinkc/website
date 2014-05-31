@@ -9,8 +9,17 @@
 class Course {
     private $categoryId;
     private $coursename;
-    
-    public function getCategoryId() {
+    private $coursetype;
+
+    public function getCoursetype() {
+        return $this->coursetype;
+    }
+
+    public function setCoursetype($coursetype) {
+        $this->coursetype = $coursetype;
+    }
+
+        public function getCategoryId() {
         return $this->categoryId;
     }
 

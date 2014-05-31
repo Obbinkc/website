@@ -18,21 +18,15 @@ require ('core/functions/courseFunctions.php');
                 </div>
             </div>
           
-            <div class="form-group">
+             <div class="form-group">
                 <div class="col-md-3">
-                    <select class="form-control" name="teachers" >
-                        <option value="">Select a teacher:</option>
-                        <?php
-                        $result = getTeachers();
-
-                        while ($row = $result->fetch_assoc()) {
-                            extract($row);
-                            // echo "<tr>";
-                            echo "<OPTION value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
-                        }
-                        ?>
-                    </select>
-                </div>
+            <select class="form-control" name="coursetypes" onchange="showCourse(this.value)">
+                    <option value="">Select course type:</option>
+                    <option value="fulltime">Voltijd</option>
+                    <option value="parttime">Deelijd</option>
+                    <option value="dualtime">Duaal</option>
+                </select>
+             </div>
             </div>
 
             <div class="form-group">
@@ -75,10 +69,10 @@ require ('core/functions/courseFunctions.php');
 
 <?php
 //Checks if course-name and courseYear are set.
-if (isset($_POST['course-name']) && isset($_POST['courseYear'])) {
+if (isset($_POST['course-name']) && isset($_POST['courseYear']) &&  isset($_POST['coursetypes'])) {
     $courseName = $_POST['course-name'];
     $courseyear = $_POST['courseYear'];
-
+    $courseType=$_POST['coursetypes'];
     //Checks if courseName is filled in
     if (!empty($courseName)) {
         $courses = new courseFunctions();
@@ -92,7 +86,7 @@ if (isset($_POST['course-name']) && isset($_POST['courseYear'])) {
             $course = new Course;
             $course->setCoursename($courseName);
             $course->setCategoryId($courseyear);
-
+            $course->setCoursetype($courseType);
             $courses->addCourse($course);
         }
     } else {
