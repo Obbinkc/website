@@ -72,7 +72,7 @@ if (logged_in() == true) { ?>
         </script>
      
      
-    <?php
+    <?php 
 } else {
     include ('loginform.php');
 }

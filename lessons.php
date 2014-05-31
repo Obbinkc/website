@@ -80,7 +80,7 @@ require ('core/functions/courseFunctions.php');
         <div id="addLesson">
             <p class="lead">Add lesson</p>
             <div id="lesson-form">
-                <form action="#" method="post" name="randform">
+                <form action="#" method="post" name="randform" >
 
 
                     <!--  <label for="course">Course:</label>
