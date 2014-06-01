@@ -3,13 +3,44 @@
 class courseFunctions {
 
 //This method gets all the courses that equals to a specific catergoryId and return it
-    function getCoursesByCategoryId($q) {
+    function getFulltimeCoursesByCategoryId($q) {
+        $mysqli = Database::getDatabaseConnection();
+        $query = "SELECT `course_id`,`name` FROM `courses` WHERE `categoryId` = '" . $q . "'
+            AND `courseType` = 'fulltime'";
+        $result = $mysqli->query($query);
+        //if (mysql_num_rows($result)==0) { echo'ja hij returned niks';}
+        
+        return $result;
+    }
+     function getParttimeCoursesByCategoryId($q) {
+        $mysqli = Database::getDatabaseConnection();
+        $query = "SELECT `course_id`,`name` FROM `courses` WHERE `categoryId` = '" . $q . "'
+            AND `courseType` = 'parttime'";
+        $result = $mysqli->query($query);
+        //if (mysql_num_rows($result)==0) { echo'ja hij returned niks';}
+        
+        return $result;
+    }
+     function getDualtimeCoursesByCategoryId($q) {
+        $mysqli = Database::getDatabaseConnection();
+        $query = "SELECT `course_id`,`name` FROM `courses` WHERE `categoryId` = '" . $q . "'
+            AND `courseType` = 'dualtime'";
+        $result = $mysqli->query($query);
+        //if (mysql_num_rows($result)==0) { echo'ja hij returned niks';}
+        
+        return $result;
+    }
+    
+    
+    
+       function getCoursesByCategoryId($q) {
         $mysqli = Database::getDatabaseConnection();
         $query = "SELECT `course_id`,`name` FROM `courses` WHERE `categoryId` = '" . $q . "'";
         $result = $mysqli->query($query);
   
         return $result;
     }
+    
     function getCourses() {
     $mysqli = Database::getDatabaseConnection();
     $query = "SELECT course_id, name FROM `courses` ";
@@ -26,10 +57,12 @@ class courseFunctions {
         return $row;
     }
 
-    function getCoursesByName($name, $year) {
+    function getCoursesByName($name, $year, $courseType) {
 
         $query = "SELECT name, categoryId FROM courses WHERE name = '" . $name . "'" .
-                "AND categoryId ='" . $year . "'";
+                "AND categoryId ='" . $year . "'".
+                 "AND courseType ='" . $courseType . "'";
+        
         $result = mysqli_query(Database::getDatabaseConnection(), $query);
         return $result;
     }
@@ -47,8 +80,8 @@ class courseFunctions {
         return $id; 
     }
     
-    function checkCourseExist($name, $year) {
-        $result = $this->getCoursesByName($name, $year);
+    function checkCourseExist($name, $year, $courseType) {
+        $result = $this->getCoursesByName($name, $year, $courseType);
         return mysqli_num_rows($result);
     }
     

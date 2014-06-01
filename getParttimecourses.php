@@ -16,7 +16,7 @@
         $courses = new courseFunctions();
       
         //Calling the getCourses() method to retrieve the executed query
-        $result = $courses->getFulltimeCoursesByCategoryId($q);
+        $result = $courses->getParttimeCoursesByCategoryId($q);
 
         
         while ($row = $result->fetch_assoc()) {

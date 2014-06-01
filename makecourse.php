@@ -74,9 +74,10 @@ if (isset($_POST['course-name']) && isset($_POST['courseYear']) &&  isset($_POST
     $courseyear = $_POST['courseYear'];
     $courseType=$_POST['coursetypes'];
     //Checks if courseName is filled in
-    if (!empty($courseName)) {
+    if (!empty($courseName)&&!empty($courseyear)&&!empty($courseType)) {
+        
         $courses = new courseFunctions();
-        $rows = $courses->checkCourseExist($courseName, $courseyear);
+        $rows = $courses->checkCourseExist($courseName, $courseyear, $courseType);
         echo 'rows ' . $rows;
         if ($rows > 0) {
             echo 'De course ' . $courseName . ' bestaat voor dat jaar al.';
@@ -90,7 +91,14 @@ if (isset($_POST['course-name']) && isset($_POST['courseYear']) &&  isset($_POST
             $courses->addCourse($course);
         }
     } else {
-        echo 'Voer een course name in';
+        if (empty($courseName)) {
+            echo 'Voer een course name in';
+        } elseif (empty($courseyear)) {
+            echo 'Kies een vakjaar';
+        } else {
+            if(empty($courseType))
+             echo 'Kies een vaktype';
+        }
     }
 }
 ?>

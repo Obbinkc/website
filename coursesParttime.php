@@ -65,7 +65,7 @@ if (logged_in() == true) { ?>
                                 document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
                             }
                         }
-                        xmlhttp.open("GET", "getcourse.php?q=" + str, true);
+                        xmlhttp.open("GET", "getParttimecourses.php?q=" + str, true);
                         xmlhttp.send();
                     }
 
