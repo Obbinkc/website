@@ -60,12 +60,12 @@ class lessonFunctions {
                 . " WHERE user_id = '" . $teacherId . "'
                     AND startTime=" . $startTime . "
                     AND endTime" . $endTime . "";*/
-         $query = "SELECT startTime, endTime FROM lessons "
-                . " WHERE user_id = '" . $teacherId . "'";
+         $query = $mysqli->query("SELECT startTime, endTime FROM lessons "
+                . " WHERE user_id = '" . $teacherId . "'");
+     
+     //   $result = $mysqli->query($query);
         
-        $result = $mysqli->query($query);
-        
-        return $result;
+        return $query;
     }
 
     public function addLesson($lesson) {
