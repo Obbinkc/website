@@ -54,6 +54,19 @@ class lessonFunctions {
 
         return $result;
     }
+   function checkTeacherAlreadyAtThatTime($teacherId) {
+        $mysqli = Database::getDatabaseConnection();
+       /* $query = $query = "SELECT  user_id, startTime, endTime FROM lessons "
+                . " WHERE user_id = '" . $teacherId . "'
+                    AND startTime=" . $startTime . "
+                    AND endTime" . $endTime . "";*/
+         $query = "SELECT startTime, endTime FROM lessons "
+                . " WHERE user_id = '" . $teacherId . "'";
+        
+        $result = $mysqli->query($query);
+        
+        return $result;
+    }
 
     public function addLesson($lesson) {
         echo "<br>Lesson USER ID: " . $lesson->getUserId();

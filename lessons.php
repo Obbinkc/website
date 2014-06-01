@@ -142,16 +142,36 @@ if (isset($_POST['courses']) && isset($_POST['teachers']) && isset($_POST['start
     $lesCode = $_POST['randomfield'];
     $courses = new courseFunctions();
     $courseID = $_POST['courses'];
+    if (!empty($startTime) && !empty($endTime) && !empty($teacherId) && !empty($lesCode) && !empty($courses) && !empty($courseID)) {
 
-    $lesson = new Lesson();
-    $lesson->setCourse_id($courseID);
-    $lesson->setEndTime($endTime);
-    $lesson->setStartTime($startTime);
-    $lesson->setUserId($teacherId);
-    $lesson->setLesCode($lesCode);
-    $lessons = new lessonFunctions();
+        $lessons = new lessonFunctions();
+        $result = $lessons->checkTeacherAlreadyAtThatTime($teacherId);
+        $value=$result->fetch_assoc();
+        //foreach ($rowTeachertijden as $value) {
+           // echo'value starttime'.$value;
+                if ($startTime >= $value['startTime'] && $startTime <= $value['endTime']) {
+                    echo 'De gekozen starttijd is helaas niet beschikbaar';
+                } else if ($endTime >= $value['startTime'] && $endTime <= $value['endTime']) {
+                    echo 'De gekozen eindtijd is helaas niet beschikbaar';
+                }  else {
+                  $lesson = new Lesson();
+        $lesson->setCourse_id($courseID);
+        $lesson->setEndTime($endTime);
+        $lesson->setStartTime($startTime);
+        $lesson->setUserId($teacherId);
+        $lesson->setLesCode($lesCode);
+    
+                }
+                //extract($row);
+            
+    //    }
+                
+      
 
-    $lessons->addLesson($lesson);
+        $lessons->addLesson($lesson);
+    } else {
+        echo 'voer de velden in';
+    }
 }
 ?>
 
