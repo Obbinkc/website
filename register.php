@@ -1,4 +1,5 @@
 <?php
+//handles a request to sign up. 
 require ('core/init.php');
 include ('includes/header.php');
 	

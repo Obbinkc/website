@@ -1,4 +1,4 @@
-
+<!-- Sign in form-->
 	<div class="center-block">
 	 
 		<form class="form-signin" role="form" action="login.php" method="post">
@@ -7,10 +7,11 @@
 			<input type="password" class="form-control" name="password" placeholder="password" required>
 			<button class="btn btn-s btn-primary btn-block" type="submit">Sign in</button>
 		</form>
-		
+		<!-- Sign up button-->
 		<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
 			Sign up!
 		</button>
+		<!-- Sign up form, shown in a dialog screen-->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 			<div class="modal-content">

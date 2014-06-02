@@ -1,4 +1,5 @@
 <?php
+//This page handles the login request.
 require ('core/init.php');
 include ('includes/header.php');
 	

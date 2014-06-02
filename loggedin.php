@@ -1,4 +1,4 @@
-
+<!-- This is the home page of the logged in user.-->
 <h2>Hello, <?php echo $user_data['username']; //$_SESSION['user_id'][0];   ?>!</h2>
 
 <p>You are logged in<a href="logout.php"> Logout</a></p>

@@ -1,13 +1,14 @@
 <?php
+//This page shows the students that are registered to a specific lesson.
 require ('core/init.php');
 require ('core/functions/lessonFunctions.php');
 include ('includes/header.php');
 	
 
 	$students = $_GET['id'];
-	$result = /*$user->*/students($students);
+	$result = students($students);
 	?>
-					
+	<!-- Students shown in a table. -->				
 	<div class="table-responsive">
 		<table class=" table table-bordered table-hover"> 
 			<tr>   

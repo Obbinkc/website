@@ -1,10 +1,9 @@
 <?php
-
+//This page handles the request of a student to register to a specific lesson.
 require ('core/init.php');
 require ('core/functions/lessonFunctions.php');
 include ('includes/header.php');
 $currentDateTime = date("Y-m-d H:i:s");
-//echo "current time" . $currentDateTime;
 if (isset($_POST)) {
     $reglesson = $_POST['lessonnumber'];
     $result = reglesson($reglesson);

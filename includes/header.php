@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-//error_reporting(-1);
+//This page is included throughout the website. It contains the links to all stylesheets and javascript. it also contains the navbar.
 include_once './core/functions/users.php';
 ?>
 <html lang="en">
@@ -52,7 +52,6 @@ include_once './core/functions/users.php';
                             <li><a href="courses.php">Voltijd</a></li>
                             <li ><a href="coursesParttime.php">Deeltijd</a></li>
                             <li ><a href="coursesDualtime.php">Duaal</a></li>
-                            <li><a href="#">Contact</a></li>  
                         </ul>
                     </div>  
                 </nav>
