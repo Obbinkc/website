@@ -4,41 +4,40 @@ require ('core/init.php');
 require ('core/functions/courseFunctions.php');
 ?>
 
-
-
-
-
 <!--
 To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
+<!--
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
     </head>
     <body>
-<h2>Search Results</h2>
+<h2>Search Results</h2>-->
 
 <?php
 
 
-if (isset($_POST['search'])) {
+/*if (isset($_POST['search'])) {
     //header("Location:courses.php");
-    $search = $_POST['search'];
+    $search = $_POST['search'];*/
 
     /* @var $POST type */
     //SELECT *
-    $search_sql = "SELECT * FROM courses WHERE name OR year = '" . $search . "'";
+   /* $search_sql = "SELECT * FROM courses WHERE name OR year = '" . $search . "'";
     $search_query = mysqli_query(Database::getDatabaseConnection(),$search_sql);
     
     //echo 'search_sql '. $search_sql;
-    echo 'search_query '. $search_query;   
+    echo 'search_query '. $search_query;   */
     //$courses = new courseFunctions(); 
     //$result = $courses->getCoursesByName($name, $year);
   //  echo 'result '.$result;
     
+    
+    /* 
     if (mysqli_num_rows($search_query) > 0) {
         $search_rs = mysqli_fetch_assoc($search_query);
          
@@ -69,7 +68,7 @@ if (isset($_POST['search'])) {
         }else {
             echo "<h3>No Results</h3>";
         }
-}
+}*/
 
 ?>
        

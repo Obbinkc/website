@@ -19,12 +19,12 @@ if (logged_in() == true) { ?>
 
     <p class="lead">Vakken voltijd</p>
     
-    <h4 class="text-right">Search                </h4>
+  <!--  <h4 class="text-right">Search                </h4>
     <form class="navbar-form navbar-right" name="form1" method="post" action="searchresults.php">
         <input name="search" type="text" size="40"/>
         <input type="submit" name="Submit" value="Submit"/>
         
-    </form>    
+    </form>   --> 
          
     <div id="leftside_menu">
         <div class="col-md-4 col-lg-offset-0">
