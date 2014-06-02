@@ -90,7 +90,7 @@ require ('models/Lesson.php');
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $lessonId = $_POST["lessonId"];
-                    echo "IK BEN VAN DE FORM" . $lessonId;
+                   // echo "IK BEN VAN DE FORM" . $lessonId;
                 } else {
                     // Gets value of id that was sent from address bar
                     $lessonId = $_GET['id'];
@@ -127,7 +127,7 @@ require ('models/Lesson.php');
 </form>
 
 <?php
-if (isset($_POST['teachers'])) {
+if (isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['randomfield'])) {
     $startTime = $_POST['startTime'];
     $endTime = $_POST['endTime'];
 
@@ -135,23 +135,45 @@ if (isset($_POST['teachers'])) {
     $lesCode = $_POST['randomfield'];
     $courseID = $_POST['courses'];
 
+    if (!empty($startTime) && !empty($endTime) && !empty($teacherId) && !empty($lesCode) && !empty($courseID)) {
+
+        $lessons = new lessonFunctions();
+        $query = $lessons->checkTeacherAlreadyAtThatTime($teacherId);
+        $tijdGoedgekeurd = true;
+        while ($value = $query->fetch_object()) {
+            if ($startTime >= $value->startTime && $startTime <= $value->endTime) {
+                echo 'De gekozen starttijd is helaas niet beschikbaar';
+                $tijdGoedgekeurd = false;
+            } else if ($endTime >= $value->startTime && $endTime <= $value->endTime) {
+                echo 'De gekozen eindtijd is helaas niet beschikbaar';
+                $tijdGoedgekeurd = false;
+            }
+            if (!$tijdGoedgekeurd) {
+                break;
+            }
+        }
+        if ($tijdGoedgekeurd) {
+
+            $lesson = new Lesson();
+
+            $lesson->setLessonId($lessonId);
+            $lesson->setCourse_id($courseID);
+            $lesson->setEndTime($endTime);
+            $lesson->setStartTime($startTime);
+            $lesson->setUserId($teacherId);
+            $lesson->setLesCode($lesCode);
+            $lessons = new lessonFunctions();
+            $lessons->updateLesson($lesson);
+        }
+    } else {
+        echo 'voer de velden in';
+    }
     //echo "<br>Lesson USER ID: " . $lesson->getUserId();
-    echo "<br>Lesson course ID: " . $courseID;
-    echo "<br>Lesson starttime: " . $startTime;
-    echo "<br>Lesson endtime: " . $endTime;
-    echo "<br>Lesson lescode: " . $lesCode;
-    echo "<br>COURSE ID " . $courseID;
-
-    $lesson = new Lesson();
-
-    $lesson->setLessonId($lessonId);
-    $lesson->setCourse_id($courseID);
-    $lesson->setEndTime($endTime);
-    $lesson->setStartTime($startTime);
-    $lesson->setUserId($teacherId);
-    $lesson->setLesCode($lesCode);
-    $lessons = new lessonFunctions();
-    $lessons->updateLesson($lesson);
+    //echo "<br>Lesson course ID: " . $courseID;
+    //echo "<br>Lesson starttime: " . $startTime;
+    //echo "<br>Lesson endtime: " . $endTime;
+    //echo "<br>Lesson lescode: " . $lesCode;
+    //echo "<br>COURSE ID " . $courseID;
 }
 ?>
 
