@@ -5,8 +5,7 @@ require ('core/functions/courseFunctions.php');
 ?>
 
 <!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
+Code voor het zoeken van een course
 -->
 <!DOCTYPE html>
 <!--
