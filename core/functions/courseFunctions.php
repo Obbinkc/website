@@ -5,7 +5,7 @@ class courseFunctions {
 //This method gets all the courses that equals to a specific catergoryId and return it
     function getFulltimeCoursesByCategoryId($q) {
         $mysqli = Database::getDatabaseConnection();
-        $query = "SELECT `course_id`,`name` FROM `courses` WHERE `categoryId` = '" . $q . "'
+        $query = "SELECT `course_id`,`name`, `courseType` FROM `courses` WHERE `categoryId` = '" . $q . "'
             AND `courseType` = 'fulltime'";
         $result = $mysqli->query($query);
         //if (mysql_num_rows($result)==0) { echo'ja hij returned niks';}
@@ -14,7 +14,7 @@ class courseFunctions {
     }
      function getParttimeCoursesByCategoryId($q) {
         $mysqli = Database::getDatabaseConnection();
-        $query = "SELECT `course_id`,`name` FROM `courses` WHERE `categoryId` = '" . $q . "'
+        $query = "SELECT `course_id`,`name`, `courseType` FROM `courses` WHERE `categoryId` = '" . $q . "'
             AND `courseType` = 'parttime'";
         $result = $mysqli->query($query);
         //if (mysql_num_rows($result)==0) { echo'ja hij returned niks';}
@@ -23,7 +23,7 @@ class courseFunctions {
     }
      function getDualtimeCoursesByCategoryId($q) {
         $mysqli = Database::getDatabaseConnection();
-        $query = "SELECT `course_id`,`name` FROM `courses` WHERE `categoryId` = '" . $q . "'
+        $query = "SELECT `course_id`,`name`, `courseType` FROM `courses` WHERE `categoryId` = '" . $q . "'
             AND `courseType` = 'dualtime'";
         $result = $mysqli->query($query);
         //if (mysql_num_rows($result)==0) { echo'ja hij returned niks';}
@@ -44,6 +44,12 @@ class courseFunctions {
     function getCourses() {
     $mysqli = Database::getDatabaseConnection();
     $query = "SELECT course_id, name FROM `courses` ";
+    $result = $mysqli->query($query);
+    return $result;
+}
+  function getCourseTypes() {
+    $mysqli = Database::getDatabaseConnection();
+    $query = "SELECT courseType FROM `courses`";
     $result = $mysqli->query($query);
     return $result;
 }

@@ -24,7 +24,7 @@ require ('models/Lesson.php');
         <table width="100%" border="0" cellspacing="1" cellpadding="0">
             <tr>
                 <td>&nbsp;</td>
-                <td colspan="6"><strong>Update course details</strong> </td>
+                <td colspan="6"><strong>Update lesson details</strong> </td>
             </tr>
             <tr>
                 <td align="center">&nbsp;</td>

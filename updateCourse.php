@@ -26,51 +26,66 @@ $row = $result;
 
 <form name="form1" method="post" action="update_ac.php">
     <div class="row">
-      
-            <h1>Update course details</h1>
-            <div class="form-group">
-                <div class="col-md-3">
-                    <div class="table-responsive"></div>
-                    <table width="100%" border="0" cellspacing="1" cellpadding="0" >
-                        <tr>
-                        </tr>
-                        <tr>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td align="center"><strong>Course name</strong></td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center"><strong>Course year</strong></td>
 
-                        </tr>
-                        <tr>
-                            <td align="center">
-                                <input name="name" type="text" id="Customer"  class="form-control" value="<?php echo $row['name']; ?>"size= "15"/>
-                            </td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">
-                                <input name="categoryId" type="text" id="Number"  class="form-control" value="<?php echo $row['categoryId']; ?>" size="15"/>
-                            </td>
-                        </tr>
-                           <tr>
-                            <td align="center">&nbsp;</td>
-                            <td align="center">&nbsp;</td>
-                        </tr>
-                    </table>
-                </div>
+        <h1>Update course details</h1>
+        <div class="form-group">
+            <div class="col-md-3">
+                <div class="table-responsive"></div>
+                <table width="100%" border="0" cellspacing="1" cellpadding="0" >
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center"><strong>Course name</strong></td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center"><strong>Course year</strong></td>
+
+
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <input name="name" type="text" id="Customer"  class="form-control" value="<?php echo $row['name']; ?>"size= "15"/>
+                        </td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">
+                            <input name="categoryId" type="text" id="Number"  class="form-control" value="<?php echo $row['categoryId']; ?>" size="15"/>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td align="center">&nbsp;</td>
+                        <td align="center">&nbsp;</td>
+                    </tr>
+                </table>
             </div>
-     
+        </div>
+
 
     </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-3">
+                <select class="form-control" name="coursetypes" onchange="showCourse(this.value)">
+                    <option value="">Select course type:</option>
+                    <option value="fulltime">Voltijd</option>
+                    <option value="parttime">Deelijd</option>
+                    <option value="dualtime">Duaal</option>
+                </select>
+            </div>
+        </div>
+    </div>
+ <br>
     <div class="row">
         <div class="form-group">
             <div class="col-md-3">
