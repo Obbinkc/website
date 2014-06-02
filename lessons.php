@@ -36,17 +36,12 @@ require ('core/functions/courseFunctions.php');
 
         <?php
         require ('core/functions/lessonFunctions.php');
-
-
         $q = intval($_GET['id']);
-        //$q = $_GET['id'];
-        //echo 'qq' . $q;
         $lessons = new lessonFunctions();
-
         //Calling the getCourses() method to retrieve the executed query
         $result = $lessons->getLessons($q);
         // var_dump($result);
-
+        // fetch associative array 
         while ($row = $result->fetch_assoc()) {
             extract($row);
             echo "<tr>";
@@ -76,39 +71,28 @@ require ('core/functions/courseFunctions.php');
 
 <div class="container-fluid">
     <?php if ($user_data['type'] == 1) { ?>
-
         <div id="addLesson">
             <p class="lead">Add lesson</p>
             <div id="lesson-form">
                 <form action="#" method="post" name="randform" >
-
-
-                    <!--  <label for="course">Course:</label>
-                      <input type="text" name="courseName" id="name" />-->
-
                     <select class="form-control" name="courses" >
                         <option value="">Select a course:</option>
                         <?php
                         $courseFunction = new courseFunctions();
                         $courses = $courseFunction->getCourses();
-
                         while ($row = $courses->fetch_assoc()) {
                             extract($row);
-                            // echo "<tr>";
                             echo "<OPTION value=\"" . $row['course_id'] . "\">" . $row['name'] . ".</OPTION>";
                         }
                         ?>
                     </select>
-
                     <br>
                     <select class="form-control" name="teachers" >
                         <option value="">Select a teacher:</option>
                         <?php
                         $result = getTeachers();
-
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
-                            // echo "<tr>";
                             echo "<OPTION value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
                         }
                         ?>
@@ -142,10 +126,12 @@ if (isset($_POST['courses']) && isset($_POST['teachers']) && isset($_POST['start
     $courses = new courseFunctions();
     $courseID = $_POST['courses'];
     if (!empty($startTime) && !empty($endTime) && !empty($teacherId) && !empty($lesCode) && !empty($courses) && !empty($courseID)) {
-
+        //Creates a lessonFunctions object
         $lessons = new lessonFunctions();
-        $query = $lessons->checkTeacherAlreadyAtThatTime($teacherId);
+        //Calling the getTimesOfTeacher() method to retrieve all the starttimes and endtimes of a teacher
+        $query = $lessons->getTimesOfTeacher($teacherId);
         $tijdGoedgekeurd = true;
+        /* fetch object array until there are no rows left */
         while ($value = $query->fetch_object()) {
             if ($startTime >= $value->startTime && $startTime <= $value->endTime) {
                 echo 'De gekozen starttijd is helaas niet beschikbaar';
@@ -154,12 +140,12 @@ if (isset($_POST['courses']) && isset($_POST['teachers']) && isset($_POST['start
                 echo 'De gekozen eindtijd is helaas niet beschikbaar';
                 $tijdGoedgekeurd = false;
             }
-            if (!$tijdGoedgekeurd){
+            if (!$tijdGoedgekeurd) {
                 break;
             }
         }
         if ($tijdGoedgekeurd) {
-
+            //Creates a Lesson object
             $lesson = new Lesson();
             $lesson->setCourse_id($courseID);
             $lesson->setEndTime($endTime);
@@ -177,4 +163,3 @@ if (isset($_POST['courses']) && isset($_POST['teachers']) && isset($_POST['start
 <?php
 require ('includes/footer.php');
 ?>
-

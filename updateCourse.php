@@ -2,31 +2,17 @@
 require ('./core/database/connect.php');
 require ('core/functions/courseFunctions.php');
 require ('includes/header.php');
-
-
 // Gets value of id that was sent from address bar
 $courseId = $_GET['id'];
-
-
 // Object of the class courseFunctions.
 $courses = new courseFunctions();
-
 //Calling the getCourses() method to retrieve the executed query
 $result = $courses->getCourseById($courseId);
 // $row = mysqli_fetch_array($result);
 $row = $result;
 ?>
-
-<!--  <div class="form-group">
-               <div class="col-md-3">
-                   <label>Course name</label>
-                   <input type="text" class="form-control" id="full-name" name="course-name" placeholder="course name">
-               </div>
-           </div>-->
-
 <form name="form1" method="post" action="update_ac.php">
     <div class="row">
-
         <h1>Update course details</h1>
         <div class="form-group">
             <div class="col-md-3">
@@ -47,8 +33,6 @@ $row = $result;
                         <td align="center">&nbsp;</td>
                         <td align="center">&nbsp;</td>
                         <td align="center"><strong>Course year</strong></td>
-
-
                     </tr>
                     <tr>
                         <td align="center">
@@ -61,7 +45,6 @@ $row = $result;
                         <td align="center">
                             <input name="categoryId" type="text" id="Number"  class="form-control" value="<?php echo $row['categoryId']; ?>" size="15"/>
                         </td>
-
                     </tr>
                     <tr>
                         <td align="center">&nbsp;</td>
@@ -70,8 +53,6 @@ $row = $result;
                 </table>
             </div>
         </div>
-
-
     </div>
     <div class="row">
         <div class="form-group">
@@ -97,8 +78,6 @@ $row = $result;
             </div>
         </div>
     </div>
-
-
 </form>
 <?php
 require ('includes/footer.php');

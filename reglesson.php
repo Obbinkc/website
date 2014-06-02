@@ -9,10 +9,11 @@ if (isset($_POST)) {
     $result = reglesson($reglesson);
 
     $ResultDateTimeLesson = getDateTimesOfLesson($reglesson);
+    // fetch associative array 
     $DateTimeLesson = $ResultDateTimeLesson->fetch_assoc();
     $lesson = $result->fetch_assoc();
     if (empty($lesson['lescode'])) {
-        echo 'crap';
+         echo 'Error: lessoncode incorrect';
     } else {
         
         if ($currentDateTime < $DateTimeLesson['startTime']) {

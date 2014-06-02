@@ -54,26 +54,15 @@ class lessonFunctions {
 
         return $result;
     }
-   function checkTeacherAlreadyAtThatTime($teacherId) {
+   function getTimesOfTeacher($teacherId) {
         $mysqli = Database::getDatabaseConnection();
-       /* $query = $query = "SELECT  user_id, startTime, endTime FROM lessons "
-                . " WHERE user_id = '" . $teacherId . "'
-                    AND startTime=" . $startTime . "
-                    AND endTime" . $endTime . "";*/
          $query = $mysqli->query("SELECT startTime, endTime FROM lessons "
                 . " WHERE user_id = '" . $teacherId . "'");
-     
-     //   $result = $mysqli->query($query);
-        
+     //   $result = $mysqli->query($query);    
         return $query;
     }
 
     public function addLesson($lesson) {
-        echo "<br>Lesson USER ID: " . $lesson->getUserId();
-        echo "<br>Lesson course ID: " . $lesson->getCourse_id();
-        echo "<br>Lesson starttime: " . $lesson->getStartTime();
-        echo "<br>Lesson endtime: " . $lesson->getEndTime();
-
         $query = "INSERT INTO lessons (lessonId, user_id, course_id, startTime, endTime, lescode) VALUES ('NULL','" . mysqli_real_escape_string(Database::getDatabaseConnection(), $lesson->getUserId()) .
                 "','" . mysqli_real_escape_string(Database::getDatabaseConnection(), $lesson->getCourse_id()) . "','" .
                 mysqli_real_escape_string(Database::getDatabaseConnection(), $lesson->getStartTime()) . "','" .
@@ -107,14 +96,12 @@ function getDateTimesOfLesson($reglesson) {
 
 function regUserLesson($register_data) {
     //echo "INSERT INTO `reglesson`(`first_name`, `last_name`, `lescode`) VALUES ('".$register_data['first_name']."','".$register_data['last_name']."','".$register_data['lescode']."')";
-
     $query = "INSERT INTO reglesson (first_name, last_name, lescode) VALUES ('"
             . mysqli_real_escape_string(Database::getDatabaseConnection(), $register_data['first_name']) . "','"
             . mysqli_real_escape_string(Database::getDatabaseConnection(), $register_data['last_name']) . "','"
             . mysqli_real_escape_string(Database::getDatabaseConnection(), $register_data['lescode']) . "')";
 
     //var_dump($query);
-
     if (mysqli_query(Database::getDatabaseConnection(), $query)) {
         echo 'Gelukt!';
     } else {

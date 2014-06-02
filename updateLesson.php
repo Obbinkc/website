@@ -55,7 +55,6 @@ require ('models/Lesson.php');
                         echo "selectedCourse" . $selectedCourse;
                         while ($row = $courses->fetch_assoc()) {
                             extract($row);
-                            // echo "<tr>";
                             if ($selectedCourse == $row['name']) {
                                 echo "<OPTION selected value=\"" . $row['course_id'] . "\">" . $row['name'] . ".</OPTION>";
                             }
@@ -73,10 +72,8 @@ require ('models/Lesson.php');
                         <?php
                         $selectedTeacher = $_GET['teacher'];
                         $result = getTeachers();
-
                         while ($row = $result->fetch_assoc()) {
                             extract($row);
-                            // echo "<tr>";
                             if ($selectedTeacher == $row['username']) {
                                 echo "<OPTION  selected value=\"" . $row['user_id'] . "\">" . $row['username'] . ".</OPTION>";
                             }
@@ -97,8 +94,9 @@ require ('models/Lesson.php');
                     //   echo"ik ben van de URL" . $lessonId;
                 }
 
-// Object of the class courseFunctions.
+                // Object of the class lessonFunctions.
                 $lessons = new lessonFunctions();
+                //Calling the getLessonById() method to retrieve the starttime, endtime and lessoncode of a lesson.
                 $result = $lessons->getLessonById($lessonId);
                 $row = $result;
                 ?>
@@ -112,20 +110,15 @@ require ('models/Lesson.php');
                 <td align="center">
                     <input name="randomfield" type="text" id="lescode" value="<?php echo $row['lescode']; ?>" size="15"/>
                     <input type="button" class="btn btn-primary btn-sm" value="Generate a random password" onClick="randomString();">&nbsp;
-
                 </td>
-
             </tr>
         </table>
         <input name="lessonId" type="hidden" id="lessonId" value="<?php echo $lessonId; ?>"/>
-
         <br>
-
         <button type="submit" class="btn btn-default">Submit</button></td>
     <td align="center">&nbsp;</td>
 </td>
 </form>
-
 <?php
 if (isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['randomfield'])) {
     $startTime = $_POST['startTime'];
@@ -136,10 +129,12 @@ if (isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['end
     $courseID = $_POST['courses'];
 
     if (!empty($startTime) && !empty($endTime) && !empty($teacherId) && !empty($lesCode) && !empty($courseID)) {
-
+        //Creates a lessonFunctions object
         $lessons = new lessonFunctions();
-        $query = $lessons->checkTeacherAlreadyAtThatTime($teacherId);
+        //Calling the getTimesOfTeacher() method to retrieve all the starttimes and endtimes of a teacher
+        $query = $lessons->getTimesOfTeacher($teacherId);
         $tijdGoedgekeurd = true;
+        /* fetch object array until there are no rows left */
         while ($value = $query->fetch_object()) {
             if ($startTime >= $value->startTime && $startTime <= $value->endTime) {
                 echo 'De gekozen starttijd is helaas niet beschikbaar';
@@ -153,9 +148,8 @@ if (isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['end
             }
         }
         if ($tijdGoedgekeurd) {
-
+            //Creates a Lesson object
             $lesson = new Lesson();
-
             $lesson->setLessonId($lessonId);
             $lesson->setCourse_id($courseID);
             $lesson->setEndTime($endTime);
@@ -168,12 +162,6 @@ if (isset($_POST['teachers']) && isset($_POST['startTime']) && isset($_POST['end
     } else {
         echo 'voer de velden in';
     }
-    //echo "<br>Lesson USER ID: " . $lesson->getUserId();
-    //echo "<br>Lesson course ID: " . $courseID;
-    //echo "<br>Lesson starttime: " . $startTime;
-    //echo "<br>Lesson endtime: " . $endTime;
-    //echo "<br>Lesson lescode: " . $lesCode;
-    //echo "<br>COURSE ID " . $courseID;
 }
 ?>
 
