@@ -3,12 +3,12 @@
 class lessonFunctions {
 
     function updateLesson($lesson) {
-        echo "<br>Lesson USER ID: " . $lesson->getUserId();
+      /*  echo "<br>Lesson USER ID: " . $lesson->getUserId();
         echo "<br>Lesson course ID: " . $lesson->getCourse_id();
         echo "<br>Lesson starttime: " . $lesson->getStartTime();
         echo "<br>Lesson endtime: " . $lesson->getEndTime();
         echo "<br>Lesson lescode: " . $lesson->getLesCode();
-        echo "<br>Lesson lessonId: " . $lesson->getLessonId();
+        echo "<br>Lesson lessonId: " . $lesson->getLessonId();*/
 
 
         // Updates the course data in mysql database
