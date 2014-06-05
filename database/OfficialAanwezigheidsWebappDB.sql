@@ -2,7 +2,7 @@
 -- Host:                         145.92.203.240
 -- Server versie:                5.5.37 - Source distribution
 -- Server OS:                    Linux
--- HeidiSQL Versie:              8.3.0.4694
+-- HeidiSQL Versie:              8.0.0.4396
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `courseType` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`course_id`),
   KEY `categoryId` (`categoryId`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel zhuraibz001.courses: ~6 rows (ongeveer)
+-- Dumpen data van tabel zhuraibz001.courses: ~7 rows (ongeveer)
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
 INSERT INTO `courses` (`course_id`, `categoryId`, `name`, `courseType`) VALUES
 	(4, 2, 'Unix Network Programming', 'parttime'),
@@ -50,7 +50,9 @@ INSERT INTO `courses` (`course_id`, `categoryId`, `name`, `courseType`) VALUES
 	(17, 3, 'Wiskunde', 'dualtime'),
 	(26, 1, 'Nederlands', 'fulltime'),
 	(39, 1, 'Engels', 'dualtime'),
-	(46, 2, 'Handleiding', 'fulltime');
+	(47, 2, 'Scheikunde', 'parttime'),
+	(48, 2, 'C++', 'fulltime'),
+	(49, 4, 'Wiskunde', 'fulltime');
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 
 
@@ -65,9 +67,9 @@ CREATE TABLE IF NOT EXISTS `lessons` (
   PRIMARY KEY (`lessonId`),
   KEY `user_id` (`user_id`),
   KEY `course_id` (`course_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel zhuraibz001.lessons: ~10 rows (ongeveer)
+-- Dumpen data van tabel zhuraibz001.lessons: ~14 rows (ongeveer)
 /*!40000 ALTER TABLE `lessons` DISABLE KEYS */;
 INSERT INTO `lessons` (`lessonId`, `user_id`, `course_id`, `startTime`, `endTime`, `lescode`) VALUES
 	(1, 2, 18, '2014-03-24 00:55:02', '2014-04-24 02:55:07', '1234'),
@@ -75,11 +77,15 @@ INSERT INTO `lessons` (`lessonId`, `user_id`, `course_id`, `startTime`, `endTime
 	(4, 2, 18, '2014-06-30 23:12:00', '2014-06-30 23:13:00', '0'),
 	(5, 2, 18, '2014-10-10 23:15:00', '2014-10-10 23:16:00', '0'),
 	(7, 2, 18, '2014-12-30 23:15:00', '2014-06-30 23:13:00', 'WErslVd8'),
-	(10, 6, 26, '2014-04-25 10:00:00', '2014-04-25 11:00:00', 'lol'),
+	(10, 6, 26, '2014-04-25 10:00:00', '2014-04-25 11:00:00', 'pen'),
 	(11, 2, 5, '2014-10-10 23:15:00', '2014-10-10 23:16:00', '535aUxz4'),
 	(12, 6, 4, '2014-05-07 10:00:00', '2014-05-07 12:00:00', 'PaC40P6T'),
 	(14, 2, 3, '2014-12-30 23:15:00', '2014-12-30 23:23:00', '8EKbH8qU'),
-	(33, 2, 17, '2014-06-01 00:30:00', '2014-06-01 00:50:00', 'StwtOB27');
+	(33, 2, 17, '2014-06-01 00:30:00', '2014-06-01 00:50:00', 'StwtOB27'),
+	(48, 2, 26, '2014-05-30 23:15:00', '2014-06-10 23:15:00', 'sdf'),
+	(49, 6, 47, '2014-06-01 23:15:00', '2014-06-15 23:15:00', 'gvb'),
+	(55, 2, 47, '2014-06-01 23:15:00', '2014-06-10 23:15:00', 'gvb'),
+	(57, 6, 47, '2014-06-16 23:15:00', '2014-06-18 23:15:00', 'T29RUWI4');
 /*!40000 ALTER TABLE `lessons` ENABLE KEYS */;
 
 
@@ -89,31 +95,37 @@ CREATE TABLE IF NOT EXISTS `reglesson` (
   `first_name` varchar(32) NOT NULL,
   `last_name` varchar(32) NOT NULL,
   `lescode` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel zhuraibz001.reglesson: ~19 rows (ongeveer)
+-- Dumpen data van tabel zhuraibz001.reglesson: ~23 rows (ongeveer)
 /*!40000 ALTER TABLE `reglesson` DISABLE KEYS */;
-INSERT INTO `reglesson` (`id`, `first_name`, `last_name`, `lescode`) VALUES
-	(2, 'student', 'student', 'rtcSUVZ7'),
-	(3, 'student', 'student', 'WErslVd8'),
-	(4, 'student', 'student', '1234'),
-	(6, 'asd', 'asd', 'rtcSUVZ7'),
-	(7, 'test', 'test', 'rtcSUVZ7'),
-	(8, 'student', 'student', '1234'),
-	(9, 'student', 'student', '1234'),
-	(10, 'arnold', 'huybens', 'rtcSUVZ7'),
-	(11, 'student', 'student', 'PaC40P6T'),
-	(12, 'Jan', 'Janus', 'rtcSUVZ7'),
-	(13, 'Jan', 'Janus', '1234'),
-	(14, 'Jan', 'Janus', '1234'),
-	(15, 'Jan', 'Janus', '1234'),
-	(16, 'Jan', 'Janus', '1234'),
-	(17, 'Jan', 'Janus', '1234'),
-	(18, 'Jan', 'Janus', 'qwe'),
-	(19, 'Jan', 'Janus', 'qwe'),
-	(20, 'Jan', 'Janus', '535aUxz4'),
-	(21, 'student', 'student', 'StwtOB27');
+INSERT INTO `reglesson` (`id`, `first_name`, `last_name`, `lescode`, `user_id`) VALUES
+	(2, 'student', 'student', 'rtcSUVZ7', NULL),
+	(3, 'student', 'student', 'WErslVd8', NULL),
+	(4, 'student', 'student', '1234', NULL),
+	(6, 'asd', 'asd', 'rtcSUVZ7', NULL),
+	(7, 'test', 'test', 'rtcSUVZ7', NULL),
+	(8, 'student', 'student', '1234', NULL),
+	(9, 'student', 'student', '1234', NULL),
+	(10, 'arnold', 'huybens', 'rtcSUVZ7', NULL),
+	(11, 'student', 'student', 'PaC40P6T', NULL),
+	(12, 'Jan', 'Janus', 'rtcSUVZ7', NULL),
+	(13, 'Jan', 'Janus', '1234', NULL),
+	(14, 'Jan', 'Janus', '1234', NULL),
+	(15, 'Jan', 'Janus', '1234', NULL),
+	(16, 'Jan', 'Janus', '1234', NULL),
+	(17, 'Jan', 'Janus', '1234', NULL),
+	(18, 'Jan', 'Janus', 'qwe', NULL),
+	(19, 'Jan', 'Janus', 'qwe', NULL),
+	(20, 'Jan', 'Janus', '535aUxz4', NULL),
+	(21, 'student', 'student', 'StwtOB27', NULL),
+	(22, 'student', 'student', 'sdf', NULL),
+	(23, 'student', 'student', 'sdf', NULL),
+	(24, 'student', 'student', 'sdf', 8),
+	(25, 'Jan', 'Janus', 'gvb', 15);
 /*!40000 ALTER TABLE `reglesson` ENABLE KEYS */;
 
 
