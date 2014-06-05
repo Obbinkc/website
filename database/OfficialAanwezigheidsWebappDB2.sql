@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
   KEY `categoryId` (`categoryId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
--- Dumpen data van tabel zhuraibz001.courses: ~7 rows (ongeveer)
+-- Dumpen data van tabel zhuraibz001.courses: ~8 rows (ongeveer)
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
 INSERT INTO `courses` (`course_id`, `categoryId`, `name`, `courseType`) VALUES
 	(4, 2, 'Unix Network Programming', 'parttime'),
@@ -85,7 +85,8 @@ INSERT INTO `lessons` (`lessonId`, `user_id`, `course_id`, `startTime`, `endTime
 	(48, 2, 26, '2014-05-30 23:15:00', '2014-06-10 23:15:00', 'sdf'),
 	(49, 6, 47, '2014-06-01 23:15:00', '2014-06-15 23:15:00', 'gvb'),
 	(55, 2, 47, '2014-06-01 23:15:00', '2014-06-10 23:15:00', 'gvb'),
-	(57, 6, 47, '2014-06-16 23:15:00', '2014-06-18 23:15:00', 'T29RUWI4');
+	(57, 6, 47, '2014-06-16 23:15:00', '2014-06-18 23:15:00', 'T29RUWI4'),
+	(59, 19, 26, '2014-05-30 23:15:00', '2014-06-10 23:15:00', 'klok');
 /*!40000 ALTER TABLE `lessons` ENABLE KEYS */;
 
 
@@ -103,29 +104,17 @@ CREATE TABLE IF NOT EXISTS `reglesson` (
 -- Dumpen data van tabel zhuraibz001.reglesson: ~23 rows (ongeveer)
 /*!40000 ALTER TABLE `reglesson` DISABLE KEYS */;
 INSERT INTO `reglesson` (`id`, `first_name`, `last_name`, `lescode`, `user_id`) VALUES
-	(2, 'student', 'student', 'rtcSUVZ7', NULL),
 	(3, 'student', 'student', 'WErslVd8', NULL),
-	(4, 'student', 'student', '1234', NULL),
-	(6, 'asd', 'asd', 'rtcSUVZ7', NULL),
 	(7, 'test', 'test', 'rtcSUVZ7', NULL),
 	(8, 'student', 'student', '1234', NULL),
-	(9, 'student', 'student', '1234', NULL),
 	(10, 'arnold', 'huybens', 'rtcSUVZ7', NULL),
 	(11, 'student', 'student', 'PaC40P6T', NULL),
 	(12, 'Jan', 'Janus', 'rtcSUVZ7', NULL),
-	(13, 'Jan', 'Janus', '1234', NULL),
-	(14, 'Jan', 'Janus', '1234', NULL),
-	(15, 'Jan', 'Janus', '1234', NULL),
-	(16, 'Jan', 'Janus', '1234', NULL),
-	(17, 'Jan', 'Janus', '1234', NULL),
-	(18, 'Jan', 'Janus', 'qwe', NULL),
 	(19, 'Jan', 'Janus', 'qwe', NULL),
 	(20, 'Jan', 'Janus', '535aUxz4', NULL),
 	(21, 'student', 'student', 'StwtOB27', NULL),
-	(22, 'student', 'student', 'sdf', NULL),
-	(23, 'student', 'student', 'sdf', NULL),
-	(24, 'student', 'student', 'sdf', 8),
-	(25, 'Jan', 'Janus', 'gvb', 15);
+	(28, 'student', 'student', 'sdf', 8),
+	(29, 'Jan', 'Janus', 'sdf', 15);
 /*!40000 ALTER TABLE `reglesson` ENABLE KEYS */;
 
 
@@ -152,7 +141,8 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `first_name`, `last_name
 	(8, 'student', 'cd73502828457d15655bbd7a63fb0bc8', 'student', 'student', 'student@student.nl', 1, 0),
 	(13, 'zaky', '3765f2bfa73b3c55f980d3779b8d9961', 'zaky', 'huraibi', 'zaky@huraibi.nl', 1, 0),
 	(15, 'jan', '3957832c9cc9e0586d8b07eebe349caa', 'Jan', 'Janus', 'jan@janus.nl', 1, 0),
-	(16, 'Marco', '7102ce7834b18e4cd2f361b5e4daf9d2', 'marco', 'marcellis', 'marco@marcellis.nl', 1, 0);
+	(16, 'Marco', '7102ce7834b18e4cd2f361b5e4daf9d2', 'marco', 'marcellis', 'marco@marcellis.nl', 1, 0),
+	(19, 'asd', 'a152e841783914146e4bcd4f39100686', 'asd', 'asd', 'asd', 1, 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
