@@ -56,7 +56,7 @@ class lessonFunctions {
     }
    function getTimesOfTeacher($teacherId) {
         $mysqli = Database::getDatabaseConnection();
-         $query = $mysqli->query("SELECT startTime, endTime FROM lessons "
+         $query = $mysqli->query("SELECT user_id, startTime, endTime FROM lessons "
                 . " WHERE user_id = '" . $teacherId . "'");
      //   $result = $mysqli->query($query);    
         return $query;
@@ -68,7 +68,7 @@ class lessonFunctions {
                 mysqli_real_escape_string(Database::getDatabaseConnection(), $lesson->getStartTime()) . "','" .
                 mysqli_real_escape_string(Database::getDatabaseConnection(), $lesson->getEndTime()) .
                 "','" . mysqli_real_escape_string(Database::getDatabaseConnection(), $lesson->getLesCode()) . "')";
-        var_dump($query);
+       // var_dump($query);
         if (mysqli_query(Database::getDatabaseConnection(), $query)) {
             echo 'De les is succesvol is aangemaakt';
         } else {

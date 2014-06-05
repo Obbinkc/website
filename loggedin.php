@@ -9,7 +9,7 @@
 <?php } else {?>
   <div class="lessonform">
 	<form class="input-group" role="form" action="reglesson.php" method="post">
-		<input type="text" class="form-control" name="lessonnumber" placeholder="register to lesson" required autofocus>
+		<input type="text" class="form-control" name="lessonnumber" placeholder="Write here a lessoncode" required autofocus>
 		<span class="input-group-btn">
         <button class="btn btn-primary" type="submit">Submit</button>
         </span>
