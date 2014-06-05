@@ -3,6 +3,8 @@
 require ('core/init.php');
 require ('core/functions/lessonFunctions.php');
 include ('includes/header.php');
+
+date_default_timezone_set('Europe/Berlin'); 
 $currentDateTime = date("Y-m-d H:i:s");
 if (isset($_POST)) {
     $reglesson = $_POST['lessonnumber'];
