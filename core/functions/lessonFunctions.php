@@ -85,6 +85,13 @@ function reglesson($reglesson) {
     return $result;
 }
 
+//Checks if the student already has registered for a lesson
+ function checkStudentOnList($userId) {
+        $query = "SELECT * FROM reglesson WHERE user_id = '" . $userId . "'";
+        $result = mysqli_query(Database::getDatabaseConnection(), $query);
+        return mysqli_num_rows($result);
+    }
+
 function getDateTimesOfLesson($reglesson) {
     $mysqli = Database::getDatabaseConnection();
     $query = "SELECT startTime, endTime FROM `lessons` WHERE `lescode` = '" . $reglesson . "'";
@@ -96,10 +103,11 @@ function getDateTimesOfLesson($reglesson) {
 
 function regUserLesson($register_data) {
     //echo "INSERT INTO `reglesson`(`first_name`, `last_name`, `lescode`) VALUES ('".$register_data['first_name']."','".$register_data['last_name']."','".$register_data['lescode']."')";
-    $query = "INSERT INTO reglesson (first_name, last_name, lescode) VALUES ('"
+    $query = "INSERT INTO reglesson (first_name, last_name, lescode, user_id) VALUES ('"
             . mysqli_real_escape_string(Database::getDatabaseConnection(), $register_data['first_name']) . "','"
             . mysqli_real_escape_string(Database::getDatabaseConnection(), $register_data['last_name']) . "','"
-            . mysqli_real_escape_string(Database::getDatabaseConnection(), $register_data['lescode']) . "')";
+            . mysqli_real_escape_string(Database::getDatabaseConnection(), $register_data['lescode']) . "','"
+            . mysqli_real_escape_string(Database::getDatabaseConnection(), $register_data['user_id']) . "')";
 
     //var_dump($query);
     if (mysqli_query(Database::getDatabaseConnection(), $query)) {

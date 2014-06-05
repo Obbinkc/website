@@ -78,7 +78,7 @@ if (isset($_POST['course-name']) && isset($_POST['courseYear']) &&  isset($_POST
         
         $courses = new courseFunctions();
         $rows = $courses->checkCourseExist($courseName, $courseyear, $courseType);
-        echo 'rows ' . $rows;
+       // echo 'rows ' . $rows;
         if ($rows > 0) {
             echo 'De course ' . $courseName . ' bestaat voor dat jaar al.';
         } else {
